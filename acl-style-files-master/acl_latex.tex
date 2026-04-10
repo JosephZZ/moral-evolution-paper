@@ -1,0 +1,220 @@
+\documentclass[11pt]{article}
+
+% Change "review" to "final" to generate the final (sometimes called camera-ready) version.
+% Change to "preprint" to generate a non-anonymous version with page numbers.
+\usepackage[preprint]{acl}
+
+% Standard package includes
+\usepackage{times}
+\usepackage{latexsym}
+
+% For proper rendering and hyphenation of words containing Latin characters (including in bib files)
+\usepackage[T1]{fontenc}
+% For Vietnamese characters
+% \usepackage[T5]{fontenc}
+% See https://www.latex-project.org/help/documentation/encguide.pdf for other character sets
+
+% This assumes your files are encoded as UTF8
+\usepackage[utf8]{inputenc}
+
+% This is not strictly necessary, and may be commented out,
+% but it will improve the layout of the manuscript,
+% and will typically save some space.
+\usepackage{microtype}
+
+% This is also not strictly necessary, and may be commented out.
+% However, it will improve the aesthetics of text in
+% the typewriter font.
+\usepackage{inconsolata}
+
+%Including images in your LaTeX document requires adding
+%additional package(s)
+\usepackage{graphicx}
+
+\usepackage{algorithm}
+\usepackage{algorithmic}
+\usepackage{tabularx}
+\usepackage{booktabs}
+\usepackage{pifont}
+\usepackage{xspace}
+\usepackage[most]{tcolorbox}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{subcaption}
+\usepackage{marvosym}
+
+\newcommand{\cmark}{\ding{51}}  % ✓
+\newcommand{\xmark}{\ding{55}}  % ✗
+\newcommand{\agentframe}{\textsc{MoRE}\xspace}
+\newcommand{\envframe}{\textsc{Social-Evol}\xspace}
+\newcommand{\HP}{\mathrm{HP}}
+\newcommand{\bound}[3]{\min(\max(#1, #2), #3)}
+
+% If the title and author information does not fit in the area allocated, uncomment the following
+%
+%\setlength\titlebox{<dim>}
+%
+% and set <dim> to something 5cm or larger.
+
+\title{An LLM-based Agent Simulation Approach to Study Moral Evolution}
+
+% Author information can be set in various styles:
+% For several authors from the same institution:
+% \author{Author 1 \and ... \and Author n \\
+%         Address line \\ ... \\ Address line}
+% if the names do not fit well on one line use
+%         Author 1 \\ {\bf Author 2} \\ ... \\ {\bf Author n} \\
+% For authors from different institutions:
+% \author{Author 1 \\ Address line \\  ... \\ Address line
+%         \And  ... \And
+%         Author n \\ Address line \\ ... \\ Address line}
+% To start a separate ``row'' of authors use \AND, as in
+% \author{Author 1 \\ Address line \\  ... \\ Address line
+%         \AND
+%         Author 2 \\ Address line \\ ... \\ Address line \And
+%         Author 3 \\ Address line \\ ... \\ Address line}
+
+
+\author{
+Zhou Ziheng$^{1}$\textsuperscript{* \Letter},
+Huacong Tang$^{1}$\textsuperscript{*},
+Mingjie Bi$^{2}$\textsuperscript{*},
+Yipeng Kang$^{2}$,
+Wanying He$^{2}$, \\
+\bf
+Fang Sun$^{1}$,
+Yizhou Sun$^{1}$,
+Ying Nian Wu$^{1}$,
+Demetri Terzopoulos$^{1}$,
+Fangwei Zhong$^{3,2}$\textsuperscript{\Letter}
+\\[0.3em]
+$^{1}$University of California, Los Angeles  \quad
+$^{2}$Beijing Institute for General Artificial Intelligence \quad \\
+$^{3}$Beijing Normal University 
+\\
+\textsuperscript{*}Equal contribution.\quad
+\textsuperscript{\Letter}Corresponding authors: josephziheng@ucla.edu, fangweizhong@bnu.edu.cn
+}
+
+%\author{
+%  \textbf{First Author\textsuperscript{1}},
+%  \textbf{Second Author\textsuperscript{1,2}},
+%  \textbf{Third T. Author\textsuperscript{1}},
+%  \textbf{Fourth Author\textsuperscript{1}},
+%\\
+%  \textbf{Fifth Author\textsuperscript{1,2}},
+%  \textbf{Sixth Author\textsuperscript{1}},
+%  \textbf{Seventh Author\textsuperscript{1}},
+%  \textbf{Eighth Author \textsuperscript{1,2,3,4}},
+%\\
+%  \textbf{Ninth Author\textsuperscript{1}},
+%  \textbf{Tenth Author\textsuperscript{1}},
+%  \textbf{Eleventh E. Author\textsuperscript{1,2,3,4,5}},
+%  \textbf{Twelfth Author\textsuperscript{1}},
+%\\
+%  \textbf{Thirteenth Author\textsuperscript{3}},
+%  \textbf{Fourteenth F. Author\textsuperscript{2,4}},
+%  \textbf{Fifteenth Author\textsuperscript{1}},
+%  \textbf{Sixteenth Author\textsuperscript{1}},
+%\\
+%  \textbf{Seventeenth S. Author\textsuperscript{4,5}},
+%  \textbf{Eighteenth Author\textsuperscript{3,4}},
+%  \textbf{Nineteenth N. Author\textsuperscript{2,5}},
+%  \textbf{Twentieth Author\textsuperscript{1}}
+%\\
+%\\
+%  \textsuperscript{1}Affiliation 1,
+%  \textsuperscript{2}Affiliation 2,
+%  \textsuperscript{3}Affiliation 3,
+%  \textsuperscript{4}Affiliation 4,
+%  \textsuperscript{5}Affiliation 5
+%\\
+%  \small{
+%    \textbf{Correspondence:} \href{mailto:email@domain}{email@domain}
+%  }
+%}
+
+\begin{document}
+\maketitle
+\begin{abstract}
+The evolution of morality presents a puzzle: natural selection should favor self-interest, yet humans developed moral systems promoting altruism. We address this question by introducing a novel Large Language Model (LLM)-based agent simulation framework modeling prehistoric hunter-gatherer societies.
+This platform is designed to probe diverse questions in social evolution, from survival advantages to inter-group dynamics.
+To investigate moral evolution, we designed agents with varying moral dispositions based on the Expanding Circle Theory \citep{singer1981expanding}. We evaluated their evolutionary success across a series of simulations and analyzed their decision-making in specially designed moral dilemmas. These experiments reveal how an agent's moral framework, in combination with its cognitive constraints, directly shapes its behavior and determines its evolutionary outcome. Crucially, the emergent patterns echo seminal theories from related domains of social science, providing external validation for the simulations.
+This work establishes LLM-based simulation as a powerful new paradigm to complement traditional research in evolutionary biology and anthropology, opening new avenues for investigating the complexities of moral and social evolution.
+\end{abstract}
+
+\section{Introduction}
+\label{sec:introduction}
+\input{sections/introduction}
+
+\section{Related Work}
+\label{sec:related_work}
+\input{sections/related_work}
+
+\section{Agent Cognitive Architecture (\agentframe)}
+\label{sec:agent_architecture}
+\input{sections/agent_architecture}
+
+\section{\envframe Framework}
+\label{sec:framework}
+\input{sections/framework}
+
+\section{Experiments}
+\label{sec:experiments}
+\input{sections/experiments}
+
+\section{Discussion}
+\label{sec:discussion}
+\input{sections/discussion}
+
+
+\section*{Limitations}
+
+This work is constrained by several design choices that delimit the scope and generality of the presented results. 
+
+First, the framework currently relies on general-purpose LLMs for key reasoning and decision-making functions. In preliminary experiments, these models exhibit brittleness in fine-grained spatial and temporal computations, which can propagate into downstream behaviors and reduce the fidelity of simulated interaction dynamics. Addressing such reasoning failures will likely require dedicated mechanisms (e.g., specialized representations or constrained inference procedures) beyond the present implementation.
+
+Second, the current model does not explicitly implement sexual selection, despite its central role in evolutionary dynamics. As a consequence, the framework cannot capture phenomena such as mate choice, mating competition, or selection pressures arising from reproductive strategies. Incorporating these processes would require additional, carefully specified mechanisms and is therefore left to future work.
+
+Third, our environment is intentionally limited to a hunter-gatherer setting. Important components of more complex societies—such as tool innovation and accumulation, exchange/market dynamics, institutional governance, and technologically mediated coordination—are not modeled. While these additions could increase ecological realism, they may also introduce additional confounds and complicate experimental control; thus, conclusions drawn from the present experiments should be interpreted as pertaining to simplified social-ecological conditions.
+
+Finally, although the framework is designed to support modular moral specifications, the current study operationalizes only a restricted subset of moral theories. Given the diversity and non-equivalence of normative frameworks, our findings may not directly generalize to alternative moral formalisms that emphasize different constructs or decision criteria. Future work should extend the implemented moral modules in a targeted manner, guided by theoretical relevance and community demand.
+
+\section*{Ethical considerations}
+Our project is, at its core, a simulation study of ethics itself. As such, it does not raise the typical ethical concerns associated with methodological research that might be misused.
+Importantly, our findings can be interpreted as supporting the general proposition that morality is beneficial for humans. The factors that sometimes cause moral agents to fail in evolutionary competition can, in fact, offer valuable insights for promoting social causes and designing mechanisms to enhance the evolutionary advantage of moral individuals.
+However, we caution against the simplistic interpretation that the conditions under which moral agents fail to prevail are evidence that morality is not advantageous for humans. Such a view is an oversimplification. First, modern society differs profoundly from prehistoric hunter-gatherer contexts. Humans have evolved to be born with moral dispositions \citep{hamlin2011young, bloom2013just, warneken2006altruistic}. Also in contemporary human societies, almost no one can survive without collaboration, promoting moral behaviors. Second, it is crucial to understand the specific causal role that morality plays in success or failure. For example, our results show that when communication is prohibitively costly, moral agents may be outcompeted by selfish ones. This occurs because morality often inclines agents toward collaboration, which may not be optimal in situations where cooperation is particularly costly. However, morality does not require agents to cooperate indiscriminately; moral agents could, in principle, maintain their moral disposition while choosing to act independently when cooperation is not advantageous, and then collaborate when conditions improve. As revealed by our simulation and common wisdom, being moral does not guarantee success in every circumstance, but a lack of morality fundamentally constrains one's potential for success.
+% Bibliography entries for the entire Anthology, followed by custom entries
+%\bibliography{custom,anthology-overleaf-1,anthology-overleaf-2}
+
+% Custom bibliography entries only
+\bibliography{custom}
+
+\appendix
+
+\section{General Discussions}
+\label{app:general_discussions}
+\input{appendix/general_discussion}
+
+\section{Discovered Phenomena That Connect to Other Theories}
+\label{app:other_theories}
+\input{appendix/other_theories}
+
+\section{System Design Details}
+\label{app:system_agent_design}
+\input{appendix/system_agent_design}
+
+\section{Simulation Analysis Agent System}
+\label{app:simulation_analysis}
+\input{appendix/data_analysis_agent}
+
+\section{Prompts Details}
+\label{app:prompts}
+\input{appendix/prompts}
+
+\section{More Experiments and Details}
+\label{app:experiments}
+\input{appendix/experiments}
+
+
+\end{document}

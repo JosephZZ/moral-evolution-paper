@@ -1,0 +1,32 @@
+Our agent design \agentframe is a \textbf{m}orality-driven \textbf{e}ntity-oriented cognitive processing architecture with \textbf{r}eflection capability.
+
+\paragraph{Agent Traits: Moral Types as Example}
+
+To model evolutionary pressures, agents share a foundational value: maximizing survival and reproduction. It's noteworthy that beyond this, the framework supports researchers to customize agent traits to conduct various research problems in social science beyond this paper's scope. In this paper, we focus on moral simulation and implement moral dispositions based on the ``expanding circle'' concept~\citep{singer1981expanding}, defining a morality spectrum:
+
+
+\textit{Self-focused agents} care exclusively about themselves. But in implementation, we notice a definitional challenge: purely selfish agents have no interest in reproduction, but defining them to care about offspring would conflate them with kin-focused agents. 
+Therefore, we define them as investing in reproduction but providing no further offspring care, similar to
+r-selected species (fish, amphibians, invertebrates) that maximize reproductive success through quantity rather than parental care~\citep{pianka1970r, stearns1992evolution, gross2005evolution, reznick2002r, trumbo2012patterns}
+
+\textit{Kin-focused agents} extend moral concern to genetic relatives, providing care and resources to family members while treating non-kin instrumentally.
+
+\textit{Group-focused agents} extend moral concern beyond kin to include non-related group members. However, defining a group remains a challenge: who constitutes the ``group" worthy of moral consideration? We define two variants: 1) \textit{Reciprocal group moral agents} extend care only to those who reciprocate similar moral concern, creating a self-consistent moral circle based on mutual recognition; 2) \textit{Universal group moral agents} extend care to all individuals regardless of their morality. It is expansive, and its non-violent orientation aligns with some intuitive conceptions of morality. However, this variant presents theoretical inconsistencies—violating fairness and reciprocity principles while benefiting agents who may undermine group welfare, such as selfish agents.
+
+
+This framework yields four distinct moral types to enable systematic investigation of how different moral dispositions affect evolutionary outcomes. We acknowledge that this discrete categorization simplifies the continuous nature of moral concern in humans for experimental tractability. 
+More importantly, this demonstrates that the framework can customize agent traits by defining the characteristics for focused social science research problems.
+% In reality, individuals weigh the importance of different group circles along a distribution rather than categorically focusing on a single circle. Furthermore, such weight distributions can change through environmental and social interactions. These more complex dynamics present directions for future exploration.
+
+\paragraph{Agent Cognition Framework}
+Our simulation employs agent-based modeling powered by LLM to capture sophisticated cognitive and social dynamics. Agent cognition processes are as follows: 
+
+\textit{Agent Initialization:} Agents are initialized with (1) a profile containing value characteristics aligned with designated moral type; (2) environmental rules governing the simulation; and (3) a knowledge handbook containing a common-sense understanding of environmental dynamics and causal relationships. It ensures agents begin with a comparable baseline understanding without artificially constraining their decision space. Importantly, no agent receives privileged strategic information, preventing methodological bias.
+
+\textit{Perception Module:} This component processes current status information about plants, prey, and other agents (e.g., HP, age) along with recent activities up to a configurable number of past steps, mirroring human short-term memory.
+
+\textit{Cognitive Processing System:} We designed an integrated entity-based system that maintains memory, makes judgments, and forms dispositions around entities like other people and hunting animals. This is in contrast to the event-based cognitive processing that records a log-book-like memory and decision history.  Our preliminary studies demonstrate that this method effectively prompts LLMs to consider relevant context and perform appropriate reasoning compared to simpler approaches. The entity-based structure provides a template for identifying important information and creating a narrative-like understanding.
+
+\textit{Action Planning:} This module prioritizes updated memories and dispositional plans to formulate specific actions. This is crucial because the simulation environment may contain many entities toward which an agent might have multiple intended interactions.
+
+\textit{Reflection Module:} This verification component ensures cognitive processing and action planning remain consistent with factual information and faithful to the agent's moral type, while producing properly formatted responses.

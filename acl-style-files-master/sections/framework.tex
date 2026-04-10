@@ -1,0 +1,44 @@
+\envframe (Fig.~\ref{fig:method}) is a text-based prehistoric hunter-gatherer society with resource constraints, social dynamics, and environmental challenges, enabling research on evolutionary pressures that likely shaped early human morality.
+
+\paragraph{Survival Mechanics}
+Agents maintain health points (HP) that must remain above zero to sustain life. HP diminishes gradually over time, representing basic metabolic costs, and decreases substantially from injuries sustained during hunting or conflict. Agents replenish HP by collecting plants or hunting prey, with successful actions immediately increasing their HP. Additionally, agents face a maximum lifespan constraint that eventually results in death regardless of HP management, modeling natural senescence.
+
+\paragraph{Resource Setting}
+The environment contains two primary resource types: plants and animals. Plants represent low-risk, low-reward resources that agents can reliably collect. Animals offer high-risk, high-reward resources that yield more HP but present significant acquisition challenges. 
+Plants are configured with initial quantity, capacity, nutrition value, and respawn delay.
+Animals are configured with HP, physical ability, and respawn interval.
+Those settings can be used to configure the abundance of the available resources.
+
+\paragraph{Production and Reproduction Mechanics}\
+
+\textit{Hunt, Collect:} Agents collect plants solely to gain HP without risks whenever plants are available. Hunting allows collaboration, which embodies realistic risk-reward tradeoffs: success probabilities and damage inflicted depend on agent-prey physical ability differentials. Failed hunts cause automatic counter-attacks (i.e., HP loss) to agents; successful attempts progressively reduce prey health until death. This difficulty incentivizes collaboration, improving success rates and distributing risks.
+
+\textit{Reproduce:} Agents meeting age and HP thresholds can reproduce, though reproduction imposes significant metabolic costs. Offspring begin life with minimal HP, creating vulnerability that typically requires parental investment (food sharing) to ensure survival.
+
+\paragraph{Social Interaction Mechanics}
+The environment supports multiple forms of social interaction:
+
+\textit{Allocate:} Agents can voluntarily transfer HP to others, enabling cooperative behaviors and care-based relationships.
+
+\textit{Communicate:} Agents can exchange messages with specific individuals or groups simultaneously. This communication system enables coordination, information sharing, and relationship development.
+
+% \textit{Rob, Fight:} Agents can attempt to appropriate HP from others through robbery or inflict damage through fighting without personal gain. Success probability depends on relative physical power, with successful attempts yielding damage or stolen HP proportional to the aggressor's physical power. These actions incur slightly higher HP costs than standard actions to reflect their intensity. Unlike hunting, where counter-attacks occur automatically when attempts fail, the simulation imposes no inherent punitive mechanism for antisocial behavior—victims must independently initiate retaliation or other social responses. This design allows agents to act in accordance with their moral types without artificial constraints.
+
+\textit{Rob, Fight:} Agents may attempt robbery to steal HP or fight to inflict damage without HP gain. Success probability and outcomes depend on relative physical abilities, with gains proportional to the aggressor’s strength. Such actions have slightly elevated HP costs due to their intensity. Unlike hunting, failed aggressive attempts do not trigger automatic retaliation; victims must initiate responses independently. This design enables agents to freely express their moral strategies without artificial constraints.
+
+This environmental design creates a complex adaptive system where survival pressures, resource competition, cooperation opportunities, and communication capabilities interact to influence the differential success of varied moral dispositions. Detailed rule explanations and configuration settings appear in the supplement.
+
+
+\paragraph{Simulation Operating Cycle} 
+The simulation operates as a sequential process where agents and the environment interact in defined steps: 1) \textit{Environment Update}, where the simulation refreshes resource availability, agent status changes, and advances time; 2) \textit{Agent Perception}, where each agent receives observations about the current environmental state and recent activities; 3) \textit{Cognitive Processing}, where agents use their architecture to process perceptions, update memory, form judgments, and develop dispositional plans consistent with their moral type toward different entities (prey or other agents) or goals (reproduction etc.); 4) \textit{Action Planning}, where agents need to consider their dispositional plans and conditions to prioritize and make specific action plans for the next few steps. Note that each simulation step includes one or more coordination rounds (allocate/communicate) and one action round (reproduce/collect/fight/rob/hunt), and the environment update itself with defined temporal dynamics; and 5) \textit{Consequence Resolution}, where outcomes of all actions are determined. This cycle repeats continually, enabling emergent complex social behaviors while maintaining tractable simulation parameters. The LLM serves as the cognitive engine for each agent, providing reasoning capabilities necessary to navigate moral dilemmas, form social strategies, and respond to environments in ways that reflect human-like cognitive processes.
+
+\paragraph{Two Supported Game Modes}
+Our environment allows two simulation game modes to study both long-term evolution and specific decision dynamics under targeted scenarios.
+(1) \textit{Evolutionary Game:}
+The evolutionary games are full simulations of agents’ behavior until all agents die or reach maximum steps. This game captures the long-term, emergent outcomes of moral evolution.
+(2) \textit{Mini Games:} 
+This game setting is designed to isolate a crucial step in the causal chain from morality to fitness: the moment an action is chosen. By placing agents in a specific, controlled scenario like moral dilemmas, we can clearly observe how different moral dispositions translate into distinct behaviors, thus illuminating a key mechanism that drives the broader dynamics seen in the full simulation. 
+
+\paragraph{Simulation Data Analysis Assistant}
+
+Throughout our project development, we identified a significant challenge in LLM-based agent simulations: interpreting the vast quantities of generated data. While having rich, multidimensional data offers tremendous analytical potential, extracting meaningful insights from this complexity requires specialized methodological approaches. To address this challenge, we developed a simulation analysis assistant agent that serves two critical functions. First, it automatically generates comprehensive statistical reports containing the key metrics visualized in our figures. Second, we implemented a series of function calls to enable an interactive Q\&A ability when user uses a readily available code copilot agent like Copilot or Cursor. It can allow researchers to interrogate specific agent behaviors, motivations, and decision processes (e.g., ``Why did Agent X perform action Y?''). This analytical tool has proven invaluable for understanding simulation dynamics and iteratively refining our agent design architecture. We provide detailed specifications of this system in the supplement.

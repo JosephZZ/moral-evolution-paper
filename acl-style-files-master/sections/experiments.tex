@@ -1,0 +1,89 @@
+
+All the agent simulation runs are using OpenAI's GPT-4.1-mini API. 
+\begin{figure}[t!]
+    \centering
+    \begin{subfigure}[b]{\columnwidth}
+        \centering
+        \includegraphics[width=\linewidth]{figures/population_Major_baseline.pdf}
+        \caption{Scenario with major baseline setting}
+    \end{subfigure}
+    \begin{subfigure}[b]{\columnwidth}
+        \centering
+        \includegraphics[width=\linewidth]{figures/population_High_social_cost.pdf}
+        \caption{Scenario with high social interaction cost}
+    \end{subfigure}
+    \begin{subfigure}[b]{\columnwidth}
+        \centering
+        \includegraphics[width=\linewidth]{figures/population_Moral_invisiable.pdf}
+        \caption{Scenario with invisible moral type}
+    \end{subfigure}
+    \caption{Agent populations and ratios of moral types}
+    \label{fig:population}
+\end{figure}
+
+\paragraph{Moral Evolution} 
+We run several exemplary experiments to demonstrate how moral dispositions interplay with various settings.
+Our baseline configuration employs a non-scarce resource, low social interaction cost, and direct moral type observability to provide a relatively easy mode of survival. In another two experiments, we change the setting to \textbf{High Social Interaction Cost} and \textbf{Invisible Moral Type}, respectively. Each simulation is initialized with 8 agents, where 2 agents per moral type. The progression of the population ratio of each moral type is shown in Fig.~\ref{fig:population}. In the baseline setting, kin-focused moral agents ultimately dominate the population. However, when interaction costs are high—making collaboration more difficult—selfish agents take over. In a third condition, where agents cannot directly observe each other’s moral types and must infer them through interaction, both kin-focused and universal moral agents tend to survive until the end. A closer analysis of the underlying dynamics reveals that kin-focused agents outperform others in the baseline setting because they avoid conflicts over resource distribution and rapidly produce offspring early in the simulation. In the high-interaction-cost condition, more moral agents spend excessive time negotiating collaboration terms rather than engaging in productive activities like hunting or gathering, allowing selfish agents to exploit this delay and gain an advantage. In the setting with hidden moral types, kin-focused agents continue to benefit from tight in-group coordination. Meanwhile, universal moral agents also persist—not because of superior collaboration efficiency, but because their strict rejection of all violence, including justified revenge, minimizes the risk of misinterpretation. In contrast, reciprocal moral agents, who selectively punish defectors, are often mistaken for selfish individuals and therefore suffer from social exclusion or retaliation. Additional experiment (\textbf{Resource Scarcity}) and detailed results can be found in the Appendix.
+
+\begin{figure}[t!]
+    \centering
+    \begin{subfigure}[b]{0.9\columnwidth}
+        \centering
+        \includegraphics[width=\linewidth]{figures/agent_hp_with_action.pdf}
+        \caption{HP trajectories of example agents.}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.9\columnwidth}
+        \centering
+        \includegraphics[width=\linewidth]{figures/mean_std_confusion_matrix.pdf}
+        \caption{Confusion matrix of moral type inference.}
+    \end{subfigure}
+    \caption{Validation results of the baseline simulation.}
+    \label{fig:validation}
+\end{figure}
+
+% \begin{figure}[ht]
+%     \centering
+%     \includegraphics[width=0.8\columnwidth]{figures/action_distribution_across_cases.pdf}
+%     \caption{Action proportion across experiment settings}
+%     \label{fig:ablations}
+% \end{figure}
+
+\paragraph{Simulation Validation}
+To showcase the effectiveness of the simulation, we validated the results from the perspectives of environmental feedback and consistency between morality and behavior.
+For the environment feedback, we randomly selected one agent from each moral type in the baseline experiment, plotting their HP curves alongside their actions in Fig.~\ref{fig:validation} (a). It reflected the correct HP changes caused by various actions. For the morality analysis, we took the kin-focused agent, who illustrates strong familial bonds and self-sacrifice, as an example. Born at step 15 with 3 HP, it gained HP through two big lucky collections, then delivered two children, and frequently shared resources. After another reproduction, however, it did not gain enough energy in time and died. The HP fluctuations show a balance between self-preservation and family support. Its life was characterized by frequent communication with family members, seeking alliances for mutual survival, and prioritizing children's well-being over personal gain.
+
+To further verify the morality-behavior consistency, we applied advanced models (GPT-4.1) to perform moral type inference from observed behaviors.  Averaging 3 inference trials yielded a confusion matrix in Fig.~\ref{fig:validation} (b). The inference achieved high accuracy, with the standard deviation under 0.02, showing the reliability of our simulation.
+
+\paragraph{Mini-game}
+We constructed an example mini-game to study how morality interacts with other factors for a resource allocation scenario within family. More examples are in the Appendix.
+
+To understand how moral dispositions shape resource sharing within families, we studied intergenerational transfers between parents and children. Our experiment involved parent-child dyads from two distinct life stages: young parents with infants and elderly parents with adult children. We modeled four moral dispositions—reproductive selfishness, universal group-focus, reciprocal group-focus, and kin-focus—creating eight unique scenarios. For each, we generated a heatmap to visualize parental transfer behavior. In these maps, the x- and y-axes represent the parents' and child's health (HP), respectively, while the color indicates the amount of resources transferred. The results reveal that provisioning strategies are systematically driven by moral type, showing clear thresholds for initiating aid, different sensitivities to self versus offspring health, and complex interactions between moral orientation and age.
+
+As shown in Fig.~\ref{fig:allocate_kinaltru}, parents generally transfer surplus health points (HP) to their children. This behavior is strongly modulated by age, with older parents allocating significantly more resources as they approach their lifespan limits. Moral dispositions, however, introduce the most striking variations. For instance, reproductively selfish parents tend to hoard resources for self-preservation, while in stark contrast, kin-focused parents consistently prioritize their offspring. In extreme cases, these kin-focused parents sacrifice nearly all of their own HP to ensure their child's survival and fitness.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=\linewidth]{figures/allocation_heatmaps.png}
+    \caption{Kin Altruism: A Minigame on Family Resource Allocation.}
+    \label{fig:allocate_kinaltru}
+\end{figure}
+
+\paragraph{Importance of Cognitive Constraints}
+Our simulations highlight the critical role of cognitive constraints in the evolution of morality, often not stressed upon by previous moral evolution theories. When communication and cooperation are costly, agents with stronger moral dispositions consistently lose their competitive edge, allowing selfish agents to dominate, as shown in Fig.~\ref{fig:population}. This pattern exemplifies bounded rationality~\citep{simon1991bounded}, where decision-making is limited by cognitive and temporal constraints. The results also lend support to the Morality-as-Cooperation (MAC) theory~\citep{Curry2019MAC}. It posits that morality evolved as a mechanism to facilitate cooperation, implying that if cooperation ceases to confer benefits, morality would likewise lose its utility. Moreover, we observe that many conflicts stem from simple misunderstandings due to limited behavioral cues—an outcome consistent with foundational theories in communication, which emphasize the inherent limits of information transmission~\citep{shannon1948mathematical, deutsch1973resolution}. Universal moral type agents, although risks being exploited, wins an advantage for avoiding being misunderstood and targeted. This connects to theories like reputation and costly signaling~\citep{alt1988reputation, gintis2001costly, nowak2005evolution}
+
+
+\paragraph{Connections to Established Theories}
+
+The results capture phenomena aligning with diverse established theories, validating our framework’s ability to produce meaningful and insightful results.
+
+
+\textit{Altruism Promotes Group-level Survival:} 
+Consistent with foundational theories of social evolution~\citep{hamilton1964genetical,trivers1971evolution,boyd1987evolution,nowak1998dynamics}, our simulations demonstrate that altruistic behaviors (non-selfish agents) generally enhance group-level survival (Fig.~\ref {fig:population}). But it may depend on the cost of collaboration and would not help when the cost is too high to defeat the purpose of collaboration. 
+
+
+\textit{Moral Evolution in Prehistoric Societies:} 
+We observed that agents with a broader moral scope do not always prevail. Specifically, kin-focused agents tend to be more stable: it always becomes the type of agents lasting to the end except for a high social interaction cost scenario (Fig.~\ref{fig:population}). This finding resonates with anthropological evidence from matrilineal prehistoric societies~\citep{holden2003matriliny, mattison2011evolutionary, wang2023ancient} and with theories proposing that the unambiguous biological connection of maternal relationships formed a reliable foundation for early human cooperation~\citep{hamilton1964genetical}.
+
+\textit{Other Theories:}
+We observe that universal moral agents often get exploited by less moral agents in the simulation, illustrating altruistic punishment’s role in cooperation maintenance~\citep{fehr2002altruistic}. Sometimes the agents choose the wrong time to reproduce because they see other agents' reproduction activities, connecting with social learning theory~\citep{bandura1977social}. Appendix includes a comprehensive list of theoretical connections.
+

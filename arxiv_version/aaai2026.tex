@@ -1,0 +1,599 @@
+%File: anonymous-submission-latex-2026.tex
+\documentclass[letterpaper]{article} % DO NOT CHANGE THIS
+\usepackage{aaai2026}  % Camera-ready version with author names
+\usepackage{times}  % DO NOT CHANGE THIS
+\usepackage{helvet}  % DO NOT CHANGE THIS
+\usepackage{courier}  % DO NOT CHANGE THIS
+\usepackage[hyphens]{url}  % DO NOT CHANGE THIS
+\usepackage{graphicx} % DO NOT CHANGE THIS
+\urlstyle{rm} % DO NOT CHANGE THIS
+\def\UrlFont{\rm}  % DO NOT CHANGE THIS
+\usepackage{natbib}  % DO NOT CHANGE THIS AND DO NOT ADD ANY OPTIONS TO IT
+\usepackage{caption} % DO NOT CHANGE THIS AND DO NOT ADD ANY OPTIONS TO IT
+\frenchspacing  % DO NOT CHANGE THIS
+\setlength{\pdfpagewidth}{8.5in} % DO NOT CHANGE THIS
+\setlength{\pdfpageheight}{11in} % DO NOT CHANGE THIS
+%
+% These are recommended to typeset algorithms but not required. See the subsubsection on algorithms. Remove them if you don't have algorithms in your paper.
+\usepackage{algorithm}
+\usepackage{algorithmic}
+\usepackage{tabularx}
+\usepackage{booktabs}
+\usepackage{pifont}
+\usepackage{xspace}
+\usepackage[most]{tcolorbox}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\newcommand{\cmark}{\ding{51}}  % ✓
+\newcommand{\xmark}{\ding{55}}  % ✗
+\newcommand{\agentframe}{\textsc{MoRE}\xspace}
+\newcommand{\envframe}{\textsc{Social-Evol}\xspace}
+\newcommand{\HP}{\mathrm{HP}}
+\newcommand{\bound}[3]{\min(\max(#1, #2), #3)}
+
+%
+% These are are recommended to typeset listings but not required. See the subsubsection on listing. Remove this block if you don't have listings in your paper.
+\usepackage{newfloat}
+\usepackage{listings}
+\DeclareCaptionStyle{ruled}{labelfont=normalfont,labelsep=colon,strut=off} % DO NOT CHANGE THIS
+
+\usepackage{subcaption}
+
+
+\lstset{%
+	basicstyle={\footnotesize\ttfamily},% footnotesize acceptable for monospace
+	numbers=left,numberstyle=\footnotesize,xleftmargin=2em,% show line numbers, remove this entire line if you don't want the numbers.
+	aboveskip=0pt,belowskip=0pt,%
+	showstringspaces=false,tabsize=2,breaklines=true}
+\floatstyle{ruled}
+\newfloat{listing}{tb}{lst}{}
+\floatname{listing}{Listing}
+%
+% Keep the \pdfinfo as shown here. There's no need
+% for you to add the /Title and /Author tags.
+\pdfinfo{
+/TemplateVersion (2026.1)
+}
+
+% DISALLOWED PACKAGES
+% \usepackage{authblk} -- This package is specifically forbidden
+% \usepackage{balance} -- This package is specifically forbidden
+% \usepackage{color (if used in text)
+% \usepackage{CJK} -- This package is specifically forbidden
+% \usepackage{float} -- This package is specifically forbidden
+% \usepackage{flushend} -- This package is specifically forbidden
+% \usepackage{fontenc} -- This package is specifically forbidden
+% \usepackage{fullpage} -- This package is specifically forbidden
+% \usepackage{geometry} -- This package is specifically forbidden
+% \usepackage{grffile} -- This package is specifically forbidden
+% \usepackage{hyperref} -- This package is specifically forbidden
+% \usepackage{navigator} -- This package is specifically forbidden
+% (or any other package that embeds links such as navigator or hyperref)
+% \indentfirst} -- This package is specifically forbidden
+% \layout} -- This package is specifically forbidden
+% \multicol} -- This package is specifically forbidden
+% \nameref} -- This package is specifically forbidden
+% \usepackage{savetrees} -- This package is specifically forbidden
+% \usepackage{setspace} -- This package is specifically forbidden
+% \usepackage{stfloats} -- This package is specifically forbidden
+% \usepackage{tabu} -- This package is specifically forbidden
+% \usepackage{titlesec} -- This package is specifically forbidden
+% \usepackage{tocbibind} -- This package is specifically forbidden
+% \usepackage{ulem} -- This package is specifically forbidden
+% \usepackage{wrapfig} -- This package is specifically forbidden
+% DISALLOWED COMMANDS
+% \nocopyright -- Your paper will not be published if you use this command
+% \addtolength -- This command may not be used
+% \balance -- This command may not be used
+% \baselinestretch -- Your paper will not be published if you use this command
+% \clearpage -- No page breaks of any kind may be used for the final version of your paper
+% \columnsep -- This command may not be used
+% \newpage -- No page breaks of any kind may be used for the final version of your paper
+% \pagebreak -- No page breaks of any kind may be used for the final version of your paperr
+% \pagestyle -- This command may not be used
+% \tiny -- This is not an acceptable font size.
+% \vspace{- -- No negative value may be used in proximity of a caption, figure, table, section, subsection, subsubsection, or reference
+% \vskip{- -- No negative value may be used to alter spacing above or below a caption, figure, table, section, subsection, subsubsection, or reference
+
+\setcounter{secnumdepth}{0} %May be changed to 1 or 2 if section numbers are desired.
+\nocopyright % Remove copyright line from footer
+
+% The file aaai2026.sty is the style file for AAAI Press
+% proceedings, working notes, and technical reports.
+%
+
+% Title
+
+% Your title must be in mixed case, not sentence case.
+% That means all verbs (including short verbs like be, is, using,and go),
+% nouns, adverbs, adjectives should be capitalized, including both words in hyphenated terms, while
+% articles, conjunctions, and prepositions are lower case unless they
+% directly follow a colon or long dash
+% \title{Investigating Moral Evolution via LLM-based Agent Simulation}
+\title{An LLM-based Agent Simulation Approach to Study Moral Evolution}
+\author{
+    Zhou Ziheng\equalcontrib \thanks{Corresponding authors}\textsuperscript{\rm 1},
+    Huacong Tang\equalcontrib\textsuperscript{\rm 1},
+    Mingjie Bi\equalcontrib\textsuperscript{\rm 2},
+    Yipeng Kang\textsuperscript{\rm 2},
+    Wanying He\textsuperscript{\rm 2},\\
+    Fang Sun\textsuperscript{\rm 1},
+    Yizhou Sun\textsuperscript{\rm 1},
+    Ying Nian Wu\textsuperscript{\rm 1},
+    Demetri Terzopoulos\textsuperscript{\rm 1},
+    Fangwei Zhong$^\dagger$\textsuperscript{\rm 3,2}
+}
+\affiliations{
+    \textsuperscript{\rm 1}University of California, Los Angeles\\
+    \textsuperscript{\rm 2}Beijing Institute for General Artificial Intelligence
+    \textsuperscript{\rm 3}Beijing Normal University\\
+    josephziheng@ucla.edu, hctang@g.ucla.edu, fangweizhong@bnu.edu.cn
+}
+
+%Example, Single Author, ->> remove \iffalse,\fi and place them surrounding AAAI title to use it
+\iffalse
+\title{My Publication Title --- Single Author}
+\author {
+    Author Name
+}
+\affiliations{
+    Affiliation\\
+    Affiliation Line 2\\
+    name@example.com
+}
+\fi
+
+\iffalse
+%Example, Multiple Authors, ->> remove \iffalse,\fi and place them surrounding AAAI title to use it
+\title{My Publication Title --- Multiple Authors}
+\author {
+    % Authors
+    First Author Name\textsuperscript{\rm 1},
+    Second Author Name\textsuperscript{\rm 2},
+    Third Author Name\textsuperscript{\rm 1}
+}
+\affiliations {
+    % Affiliations
+    \textsuperscript{\rm 1}Affiliation 1\\
+    \textsuperscript{\rm 2}Affiliation 2\\
+    firstAuthor@affiliation1.com, secondAuthor@affilation2.com, thirdAuthor@affiliation1.com
+}
+\fi
+
+
+% REMOVE THIS: bibentry
+% This is only needed to show inline citations in the guidelines document. You should not need it and can safely delete it.
+\usepackage{bibentry}
+% END REMOVE bibentry
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+The evolution of morality presents a puzzle: natural selection should favor self-interest, yet humans developed moral systems promoting altruism. We address this question by introducing a novel Large Language Model (LLM)-based agent simulation framework modeling prehistoric hunter-gatherer societies.
+This platform is designed to probe diverse questions in social evolution, from survival advantages to inter-group dynamics.
+To investigate moral evolution, we designed agents with varying moral dispositions based on the Expanding Circle Theory \citep{singer1981expanding}. We evaluated their evolutionary success across a series of simulations and analyzed their decision-making in specially designed moral dilemmas. These experiments reveal how an agent's moral framework, in combination with its cognitive constraints, directly shapes its behavior and determines its evolutionary outcome. Crucially, the emergent patterns echo seminal theories from related domains of social science, providing external validation for the simulations.
+This work establishes LLM-based simulation as a powerful new paradigm to complement traditional research in evolutionary biology and anthropology, opening new avenues for investigating the complexities of moral and social evolution.
+\end{abstract}
+
+% Uncomment the following to link to your code, datasets, an extended version or similar.
+% You must keep this block between (not within) the abstract and the main body of the paper.
+% \begin{links}
+%     \link{Code}{https://aaai.org/example/code}
+%     \link{Datasets}{https://aaai.org/example/datasets}
+%     \link{Extended version}{https://aaai.org/example/extended-version}
+% \end{links}
+
+\section{Introduction}
+
+The emergence and evolution of morality represents one of the most enduring puzzles in evolutionary biology and social sciences~\citep{haidt2007moral, greene2013moral}. From an evolutionary standpoint, natural selection should favor individuals who maximize their reproductive success, often through selfish behaviors that increase resource acquisition at others' expense~\citep{dawkins1976selfish}. Yet, humans and some other species have evolved complex moral systems that frequently promote cooperation, altruism, and other prosocial behaviors that can seemingly contradict individual fitness maximization~\citep{tomasello2016natural}. This apparent contradiction presents a profound scientific question: Under what conditions does morality provide an evolutionary advantage?
+
+% Prior research has approached this question through multiple complementary paradigms. Evolutionary game theory introduced mathematical frameworks demonstrating how strategies (e.g., reciprocity, punishment) yield higher payoffs than pure selfishness under specific conditions~\citep{nowak2006five, axelrod1981evolution}. Anthropological research has documented cross-cultural moral universals alongside cultural variations, suggesting a complex interplay between evolved predispositions and cultural learning~\citep{henrich2015secret, curry2019good}. Evolutionary biologists proposed various mechanisms, such as kin selection~\citep{hamilton1964genetical}, reciprocal altruism~\citep{trivers1971evolution}, and group selection~\citep{wilson2007rethinking}, to explain how seemingly altruistic traits might evolve. Some moral frameworks identified key patterns in moral cognition and behavior, such as the expanding circle of moral concern from self to kin to larger social groups~\citep{singer1981expanding}, and the fundamental moral dimensions including care, fairness, loyalty, authority, and sanctity~\citep{haidt2007moral}.
+
+Prior research approached this question via multiple paradigms. Evolutionary game theory showed strategies like reciprocity can outperform selfishness under certain conditions~\citep{nowak2006five, axelrod1981evolution}. Anthropologists documented moral universals and cultural variations~\citep{henrich2015secret, curry2019good}. Evolutionary biology proposed mechanisms—kin selection~\citep{hamilton1964genetical}, reciprocal altruism~\citep{trivers1971evolution}, and group selection~\citep{wilson2007rethinking}—to explain altruistic trait evolution. Some moral frameworks identified patterns such as the expanding circle of moral concern~\citep{singer1981expanding}, and fundamental moral dimensions~\citep{haidt2007moral}.
+While these approaches have yielded valuable insights, they face significant methodological limitations when investigating the whole cognitive and behavioral dynamics of morality evolution. Traditional mathematical models necessarily abstract away the rich complexity of human cognition and interaction with the environment. Evolutionary biologists and anthropological studies provide observations and hypotheses without direct and causal tests. Descriptive moral frameworks illuminate current moral patterns but cannot directly observe their evolution.
+
+Recent advances in LLMs present a novel methodological opportunity to address these limitations. LLM-based agent simulations can model entities with sophisticated cognitive architectures---including values, memory, perception, reasoning, and social dynamics---that generate emergent, complex behaviors~\citep{park2023generative, horton2023large}. This simulation paradigm allows us to observe interactions between moral cognition, behavior, and evolutionary outcomes under controlled conditions while providing rich, realistic psychological details that surpass traditional agent-based models~\citep{aher2023using}.
+Nevertheless, the existing methods barely support research on morality evolution.
+
+\begin{table*}[t]
+\setlength{\tabcolsep}{3pt}
+\centering
+\caption{Comparison of Existing LLM-based Simulation Frameworks for Social Science.}
+% \footnotesize
+\begin{tabularx}{\textwidth}{@{}p{4.5cm} c c c c c c@{}}
+\toprule
+\textbf{Environment} & \textbf{Morality} & \textbf{Memory} & \textbf{Team Formation} & \textbf{Competition} & \textbf{Evolution} & \textbf{Engine} \\
+\midrule
+\citet{park2023generative} & \xmark & Short/Long-term &  \xmark & \xmark & \xmark & LLM \\
+\citet{li2023camel} & \xmark & Undefined & Multi-round Negotiation & \xmark & \xmark & LLM \\
+\citet{horton2023large} & \xmark & Undefined & \xmark & Explicit & \xmark & LLM \\
+\citet{aher2023using} & \xmark & Short-term & \xmark & \xmark & \xmark & LLM \\
+\citet{wang2023humanoid} & \xmark & Short-term & \xmark & \xmark & \xmark & LLM \\
+\citet{huang2024adasociety} & \xmark & Short-term & Multi-round Negotiation & Implicit & \cmark & LLM/RL \\
+\citet{wang2024simulating} & \xmark & Short-term & \xmark & \xmark & \xmark & LLM \\
+\citet{piao2025agentsociety} & \xmark &  Short/Long-term & Task-dep. & Task-dep. & \cmark & LLM \\
+\citet{guan2024richelieu} & \xmark & Short/Long-term & Multi-round Negotiation & Explicit & \cmark & LLM \\
+\citet{dai2024artificial} & \xmark & Short/Long-term & Negotiation-based & Explicit & \cmark & LLM \\
+\midrule
+Ours & \cmark & Short/Long-term & Multi-round Negotiation & Explicit & \cmark & LLM \\
+\bottomrule
+\end{tabularx}
+\label{tab:comparison}
+\end{table*}
+
+To address the gaps, our research advances the study of human evolution through three primary contributions:
+1) Methodological: We pioneer a computational approach using LLM-based agents to bring psychological realism to evolutionary simulations, overcoming the limitations of traditional abstract models;
+2) Programmatic: We release \agentframe, an extensible agent framework, and \envframe, a versatile environment platform. Together, they enable multifaceted inquiry into social evolution—from norm formation to inter-group conflict—through both long-term and scenario-based simulation;
+3) Empirical: We conduct novel experiments to determine how the evolutionary success of various moral dispositions is shaped by environmental pressures, cognitive limitations, and social configurations. Our simulation's emergent phenomena align with established social science theories, thereby validating our framework's ability to produce meaningful and interpretable results.
+
+% In this paper, we modeled agents with distinct moral dispositions through a sophisticated cognitive architecture. Then, through the proposed novel LLM-based agentic simulation framework, we conducted a series of experiments under different settings to investigate the evolution of morality in a simulated prehistoric hunter-gatherer environment. 
+% These experiments show that morality can generally promote cooperation and therefore improve evolutionary advantage, but the success of cooperation is also greatly affected by different setting parameters (e.g., resources), providing insights for researchers to further investigate the complexity of this issue. 
+
+
+
+
+\section{Related Work}
+
+\paragraph{Evolutionary Origins of Morality}
+
+Evolutionary biologists have proposed various mechanisms to explain how altruistic traits might evolve. Theories of kin selection~\citep{hamilton1964genetical} and reciprocal altruism~\citep{trivers1971evolution} show how limited forms of cooperation could evolve among relatives and repeated interaction partners. Recently, cultural group selection theories~\citep{boyd2011cultural, henrich2015secret} explain how groups with stronger moral norms outcompeted others, leading to the genetic evolution of psychological predispositions supporting moral behavior.
+Evolutionary game theory provided mathematical frameworks demonstrating how cooperation can evolve under some strategies similar like previously mentioned mechanisms by showing strategies can yield higher payoffs than pure selfishness under specific conditions. \citet{nowak2006five}'s ``five rules for the evolution of cooperation" identifies key mechanisms: kin selection, direct reciprocity, indirect reciprocity, network reciprocity, and group selection. 
+
+Though these works provide great insights and a mathematical foundation for cooperation and moral evolution, they highly abstract away the rich complexity of human cognition and cooperation using mathematical models, blocking a full view of moral evolution dynamics.
+
+\paragraph{Moral Frameworks}
+
+% Our agent design draws upon descriptive moral frameworks that characterize the psychological and behavioral essence of morality. 
+Moral Foundations Theory identifies five moral dimensions: care/harm, loyalty/betrayal, authority/subversion, and sanctity/degradation~\citep{Haidt2007MFT}. The Theory of Dyadic Morality~\citep{Gray2012TDM} emphasizes harm as the root of morality, while Morality-as-Cooperation theory~\citep{Curry2019MAC} identifies seven cooperative behaviors as essential: helping kin, helping group members, reciprocating, being brave, deferring to superiors, dividing resources fairly, and respecting others' property. Other theories ground morality in distinctions between rules and conventions~\citep{Turiel1983MDT}, social-relational models~\citep{Fiske1992RMT, Rai2011RRT}, specific moral emotions~\citep{Rozin1999CAD}, or an ethic of care~\citep{Gilligan1982EOC}.
+
+
+While existing theories offer rich descriptions of morality's central traits, our initial investigation desires a framework that organizes these traits into scalable ``levels'' for a more systematic analysis. This led us to The Expanding Circle Theory~\citep{singer1981expanding} provides an ideal structure for this purpose. Its concept of a ``circle of concern'' that expands from the self, to kin, and finally to society offers a clear, tiered structure for defining an agent's moral level. Furthermore, this progression provides a natural way to integrate key concepts from other theories: care and loyalty are paramount within the kin circle, while fairness and reciprocity are essential for the stability of the broader group circle. The cross-cultural relevance of this concentric model is highlighted by its deep resonance with philosophical traditions like Confucianism \citep{fei1992from}, which also defines morality through the proper ordering of relational duties. Given its implementable structure and integrative power, we adopt the Expanding Circle as the primary theoretical foundation for our simulation.
+
+% The Expanding Circle Model~\citep{singer1981expanding} conceptualizes morality as a process of empathetic concern expanding from self to kin to larger social groups. At the most basic level, an agent who cares only about themselves cannot meaningfully engage with most moral characteristics—care for others, group welfare, fairness, reciprocity, loyalty, and respect for authority remain inapplicable. When an agent extends their concern to kin, a subset of moral characteristics becomes relevant, including care for others, loyalty, and respect for authority within the family unit. Finally, when an agent's concern encompasses the broader group beyond kinship, the full spectrum of moral characteristics becomes applicable, enabling the most comprehensive expression of moral behavior. Especially when it comes to the determination of who belongs to the group, if one treats as his group over only others who also treats him as their group, then it naturally incorporates the more general concept of reciprocity and fairness. 
+
+% \textcolor{blue}{The Expanding Circle Model~\citep{singer1981expanding} views morality as empathy expanding from self, kin to broader social groups. At basic levels, agents concerned only with selves cannot engage most moral traits (care, fairness, reciprocity, loyalty, and authority respect). Extending concern for kin introduces relevant moral dimensions (care, loyalty, and family authority) to them. Agents with concern for larger groups have a full moral expression. Defining group membership based on reciprocal acknowledgment naturally integrates concepts of fairness and reciprocity.}
+% Hence, kin/group selection and reciprocal altruism, which evolutionary biologists identify as key mechanisms for morality evolution, are naturally incorporated into the expanding group
+% circle model.
+
+% \textcolor{blue}{This concept of \textit{group circle} provides an elegant framework to connect the applicability scope of the moral characteristics in the theories mentioned above and the scope of group concern.
+% This natural mapping offers a powerful theoretical foundation for our simulation, enabling us} to systematically investigate how different levels of moral concern affect evolutionary outcomes while maintaining theoretical consistency with established moral frameworks.
+
+\begin{figure*}[t!]
+    \centering
+    \includegraphics[width=0.97\textwidth]{figures/framework.pdf}
+    \caption{Overview of our simulation framework. The \textit{Environment} follows defined temporal dynamics and iterates between (multi-)coordination rounds and action rounds to interact with agents. The \textit{Agent Cognitive Architecture} includes a moral value module prescribing moral types based on expanding circles of concern, a perception module processing environmental information, and cognitive modules that update memory, form judgments, and generate action plans consistent with the agent's moral type. Before execution, agents perform self-reflection to verify consistency with observed facts and moral dispositions. The \textit{Simulation Analysis Assistant Agent} is a developed tool to automatically analyze simulation results.}
+    \label{fig:method}
+\end{figure*}
+
+\paragraph{LLM-Based Agent Simulation}
+
+Recent advances in large language models (LLMs) provide the methodological foundation for our approach to studying morality's evolution. LLM-based agent simulations can model entities with sophisticated cognitive architectures—including values, memory, perception, reasoning, and social dynamics—that generate emergent, complex behaviors~\citep{park2023generative, horton2023large}.
+LLM agents allow for controlled experimentation with variables that would be impossible to manipulate in real-world settings; they provide transparent access to agents' decision-making processes; and they can simulate long timescales of social development~\citep{piao2025agentsociety}.
+
+Prior work has demonstrated the versatility of this approach. \citet{park2023generative} created an interactive simulated small town where generative agents exhibited complex social behaviors, including relationship formation and collective problem-solving. \citet{horton2023large} applied LLM agents to economic simulations, finding that agents replicate known economic phenomena while providing unprecedented access to reasoning processes. \citet{aher2023using} validated that LLM agent simulations can reproduce results from human behavioral experiments, showing its potential as a complementary methodology in social science research.
+However, existing environments lack the complete settings of agent morality, cooperative and competitive interactions, and evolution features, as demonstrated in Table~\ref{tab:comparison}.
+One relevant recent work is ``Artificial Leviathan", which explores social order in LLM agent societies, while they assume all agents are inherently selfish and focus on how social order emerges from this assumption~\citep{dai2024artificial}.
+
+Therefore, by explicitly modeling agents with varying moral dispositions to better reflect the diversity of human moral psychology, our work represents the first systematic application of LLM-based simulations to investigate the evolution of morality in prehistoric human societies, where moral systems likely first emerged.
+
+\section{Agent Cognitive Architecture (\agentframe)}
+Our agent design \agentframe is a \textbf{m}orality-driven \textbf{e}ntity-oriented cognitive processing architecture with \textbf{r}eflection capability.
+
+\subsubsection{Agent Traits: Moral Types as Example}
+
+To model evolutionary pressures, agents share a foundational value: maximizing survival and reproduction. It's noteworthy that beyond this, the framework supports researchers to customize agent traits to conduct various research problems in social science beyond this paper's scope. In this paper, we focus on the moral simulation problem and implement moral dispositions based on the ``expanding circle" concept~\citep{singer1981expanding}, defining a spectrum of morality:
+
+
+\textit{Self-focused agents} care exclusively about themselves. But in implementation, we notice a definitional challenge: purely selfish agents have no interest in reproduction, but defining them to care about offspring would conflate them with kin-focused agents. 
+Therefore, we define them as investing in reproduction but providing no further offspring care, similar to
+r-selected species (fish, amphibians, invertebrates) that maximize reproductive success through quantity rather than parental care~\citep{pianka1970r, stearns1992evolution, gross2005evolution, reznick2002r, trumbo2012patterns}
+
+\textit{Kin-focused agents} extend moral concern to genetic relatives, providing care and resources to family members while treating non-kin instrumentally.
+
+\textit{Group-focused agents} extend moral concern beyond kin to include non-related group members. However, defining a group remains a challenge: who constitutes the ``group" worthy of moral consideration? We define two variants:
+\begin{itemize}
+    \item \textit{Reciprocal group moral agents} extend care only to those who reciprocate similar moral concern, creating a self-consistent moral circle based on mutual recognition.
+    \item \textit{Universal group moral agents} extend care to all individuals regardless of their morality. It is expansive, and its non-violent orientation aligns with some intuitive conceptions of morality. However, this variant presents theoretical inconsistencies—violating fairness and reciprocity principles while benefiting agents who may undermine group welfare, such as selfish agents.
+\end{itemize}
+
+
+This framework yields four distinct moral types that enable systematic investigation of how different moral dispositions affect evolutionary outcomes. We acknowledge that this discrete categorization simplifies the continuous nature of moral concern in humans for experimental tractability. 
+More importantly, this demonstrates the ability of the framework to customize agent traits by defining the characteristics under the aiming social science research problems.
+% In reality, individuals weigh the importance of different group circles along a distribution rather than categorically focusing on a single circle. Furthermore, such weight distributions can change through environmental and social interactions. These more complex dynamics present directions for future exploration.
+
+\subsubsection{Agent Cognition Framework}
+Our simulation employs agent-based modeling powered by LLM to capture sophisticated cognitive and social dynamics. Typical agent cognition processes are as follows: 
+
+\textit{Agent Initialization} Agents are initialized with (1) a profile containing value characteristics aligned with designated moral type; (2) environmental rules governing the simulation; and (3) a knowledge handbook containing a common-sense understanding of environmental dynamics and causal relationships. It ensures agents begin with a comparable baseline understanding without artificially constraining their decision space. Importantly, no agent receives privileged strategic information, preventing methodological bias.
+
+\textit{Perception Module:} This component processes current status information about plants, prey, and other agents (e.g., HP, age) along with recent activities up to a configurable number of past steps, mirroring human short-term memory.
+
+\textit{Cognitive Processing System:} We designed an integrated entity-based system that maintains memory, makes judgments, and forms dispositions around entities like other people and hunting animals. This is in contrast to the event-based cognitive processing that records a log-book-like memory and decision history.  Our preliminary studies demonstrate that this method effectively prompts LLMs to consider relevant context and perform appropriate reasoning compared to simpler approaches. The entity-based structure provides a template for identifying important information and creating a narrative-like understanding.
+
+\textit{Action Planning:} This module prioritizes updated memories and dispositional plans to formulate specific actions. This is crucial because the simulation environment may contain many entities toward which an agent might have multiple intended interactions.
+
+\textit{Reflection Module:} This verification component ensures cognitive processing and action planning remain consistent with factual information and faithful to the agent's moral type, while producing properly formatted responses.
+
+
+
+\section{\envframe Framework}
+\envframe (Fig.~\ref{fig:method}) is a text-based prehistoric hunter-gatherer society with resource constraints, social dynamics, and environmental challenges, enabling research on evolutionary pressures that likely shaped early human morality.
+
+
+\subsection{Environment}
+
+\paragraph{Survival Mechanics}
+Agents maintain health points (HP) that must remain above zero to sustain life. HP diminishes gradually over time, representing basic metabolic costs, and decreases substantially from injuries sustained during hunting or conflict. Agents replenish HP by collecting plants or hunting prey, with successful actions immediately increasing their HP. Additionally, agents face a maximum lifespan constraint that eventually results in death regardless of HP management, modeling natural senescence.
+
+\paragraph{Resource Setting}
+The environment contains two primary resource types: plants and animals. Plants represent low-risk, low-reward resources that agents can reliably collect. Animals offer high-risk, high-reward resources that yield more HP but present significant acquisition challenges. 
+Plants are configured with initial quantity, capacity, nutrition value, and respawn delay.
+Animals are configured with HP, physical ability, and respawn interval.
+Those settings can be used to configure the abundance of the available resources.
+
+\paragraph{Production and Reproduction Mechanics}\
+
+\textit{Hunt, Collect:} Agents collect plants solely to gain HP without risks whenever plants are available. Hunting allows collaboration, which embodies realistic risk-reward tradeoffs: success probabilities and damage inflicted depend on agent-prey physical ability differentials. Failed hunts cause automatic counter-attacks (i.e., HP loss) to agents; successful attempts progressively reduce prey health until death. This difficulty incentivizes collaboration, improving success rates and distributing risks.
+
+\textit{Reproduce:} Agents meeting age and HP thresholds can reproduce, though reproduction imposes significant metabolic costs. Offspring begin life with minimal HP, creating vulnerability that typically requires parental investment (food sharing) to ensure survival.
+
+\paragraph{Social Interaction Mechanics}
+The environment supports multiple forms of social interaction:
+
+\textit{Allocate:} Agents can voluntarily transfer HP to others, enabling cooperative behaviors and care-based relationships.
+
+\textit{Communicate:} Agents can exchange messages with specific individuals or groups simultaneously. This communication system enables coordination, information sharing, and relationship development.
+
+% \textit{Rob, Fight:} Agents can attempt to appropriate HP from others through robbery or inflict damage through fighting without personal gain. Success probability depends on relative physical power, with successful attempts yielding damage or stolen HP proportional to the aggressor's physical power. These actions incur slightly higher HP costs than standard actions to reflect their intensity. Unlike hunting, where counter-attacks occur automatically when attempts fail, the simulation imposes no inherent punitive mechanism for antisocial behavior—victims must independently initiate retaliation or other social responses. This design allows agents to act in accordance with their moral types without artificial constraints.
+
+\textit{Rob, Fight:} Agents may attempt robbery to steal HP or fight to inflict damage without HP gain. Success probability and outcomes depend on relative physical abilities, with gains proportional to the aggressor’s strength. Such actions have slightly elevated HP costs due to their intensity. Unlike hunting, failed aggressive attempts do not trigger automatic retaliation; victims must initiate responses independently. This design enables agents to freely express their moral strategies without artificial constraints.
+
+This environmental design creates a complex adaptive system where survival pressures, resource competition, cooperation opportunities, and communication capabilities interact to influence the differential success of varied moral dispositions. Detailed rule explanations and configuration settings appear in the supplement.
+
+
+\subsection{Simulation Operating Cycle} 
+The simulation operates as a sequential process where agents and the environment interact in defined steps: 1) \textit{Environment Update}, where the simulation refreshes resource availability, agent status changes, and advances time; 2) \textit{Agent Perception}, where each agent receives observations about the current environmental state and recent activities; 3) \textit{Cognitive Processing}, where agents use their architecture to process perceptions, update memory, form judgments, and develop dispositional plans consistent with their moral type toward different entities (prey or other agents) or goals (reproduction etc.); 4) \textit{Action Planning}, where agents need to consider their dispositional plans and conditions to prioritize and make specific action plans for the next few steps. Note that each simulation step includes one or more coordination rounds (allocate/communicate) and one action round (reproduce/collect/fight/rob/hunt), and the environment update itself with defined temporal dynamics; and 5) \textit{Consequence Resolution}, where outcomes of all actions are determined. This cycle repeats continually, enabling emergent complex social behaviors while maintaining tractable simulation parameters. The LLM serves as the cognitive engine for each agent, providing reasoning capabilities necessary to navigate moral dilemmas, form social strategies, and respond to environmental pressures in ways that reflect human-like cognitive processes.
+
+\subsection{Two Supported Game Modes}
+Our environment allows two simulation game modes to study both long term evolution and specific decision dynamics under targeted scenarios.
+
+\paragraph{Evolutionary Game}
+The evolutionary games are full simulations of agents’ behavior until all agents die or reach maximum steps. This game captures the long-term, emergent outcomes of moral evolution.
+
+\paragraph{Mini Games} 
+
+This game setting is designed to isolate a crucial step in the causal chain from morality to fitness: the moment an action is chosen. By placing agents in a specific, controlled scenario like moral dilemmas, we can clearly observe how different moral dispositions translate into distinct behaviors, thus illuminating a key mechanism that drives the broader dynamics seen in the full simulation. 
+% We constructed 2 mini-games, hunting team formation and resource allocation under extreme scenarios, in this project to demonstrate its usage. 
+% The first one concerns about hunting team formation, and the second concerns about the resource allocation under extreme scenarios. 
+% Specific details about these two game settings in our project are expanded in the Experiment section.
+
+
+\subsection{Simulation Data Analysis Assistant}
+
+Throughout our project development, we identified a significant challenge in LLM-based agent simulations: interpreting the vast quantities of generated data. While having rich, multidimensional data offers tremendous analytical potential, extracting meaningful insights from this complexity requires specialized methodological approaches. To address this challenge, we developed a simulation analysis assistant agent that serves two critical functions. First, it automatically generates comprehensive statistical reports containing the key metrics visualized in our figures. Second, we implemented a series of function calls to enable an interactive Q\&A ability when user uses a readily available code copilot agent like Copilot or Cursor. It can allow researchers to interrogate specific agent behaviors, motivations, and decision processes (e.g., ``Why did Agent X perform action Y?"). This analytical tool has proven invaluable for understanding simulation dynamics and iteratively refining our agent design architecture. We provide detailed specifications of this system in the supplement.
+
+\section{Experiment}
+
+\subsection{Evolutionary Game}
+
+All the agent simulation runs are using OpenAI's GPT-4.1-mini API. 
+Here we present our baseline simulation:
+\begin{figure}[t!]
+    \centering
+    \begin{subfigure}[b]{0.8\columnwidth}
+        \centering
+        \includegraphics[width=\linewidth]{figures/population_Major_baseline.pdf}
+        \caption{Scenario with major baseline setting}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.8\columnwidth}
+        \centering
+        \includegraphics[width=\linewidth]{figures/population_High_social_cost.pdf}
+        \caption{Scenario with high social interaction cost}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.8\columnwidth}
+        \centering
+        \includegraphics[width=\linewidth]{figures/population_Moral_invisiable.pdf}
+        \caption{Scenario with invisible moral type}
+    \end{subfigure}
+    \caption{Agent populations and ratios of four moral types}
+    \label{fig:population}
+\end{figure}
+
+\paragraph{Moral Evolution} 
+We run several exemplary experiments to demonstrate how moral dispositions interplay with various settings.
+Our baseline configuration employs a non-scarce resource, low social interaction cost, and direct moral type observability to provide a relatively easy mode of survival. In another two experiments, we change the setting to \textbf{High Social Interaction Cost} and \textbf{Invisible Moral Type}, respectively. Each simulation is initialized with 8 agents, where 2 agents per moral type. The progression of the population ratio of each moral type is shown in Fig.~\ref{fig:population}. In the baseline setting, kin-focused moral agents ultimately dominate the population. However, when interaction costs are high—making collaboration more difficult—selfish agents take over. In a third condition, where agents cannot directly observe each other’s moral types and must infer them through interaction, both kin-focused and universal moral agents tend to survive until the end. A closer analysis of the underlying dynamics reveals that kin-focused agents outperform others in the baseline setting because they avoid conflicts over resource distribution and rapidly produce offspring early in the simulation. In the high-interaction-cost condition, more moral agents spend excessive time negotiating collaboration terms rather than engaging in productive activities like hunting or gathering, allowing selfish agents to exploit this delay and gain an advantage. In the setting with hidden moral types, kin-focused agents continue to benefit from tight in-group coordination. Meanwhile, universal moral agents also persist—not because of superior collaboration efficiency, but because their strict rejection of all violence, including justified revenge, minimizes the risk of misinterpretation. In contrast, reciprocal moral agents, who selectively punish defectors, are often mistaken for selfish individuals and therefore suffer from social exclusion or retaliation. Additional experiment (\textbf{Resource Scarcity}) and detailed results can be found in the Appendix.
+
+\begin{figure}[t!]
+    \centering
+    \begin{subfigure}[b]{0.8\columnwidth}
+        \centering
+        \includegraphics[width=\linewidth]{figures/agent_hp_with_action.pdf}
+        \caption{HP trajectories of example agents.}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.8\columnwidth}
+        \centering
+        \includegraphics[width=\linewidth]{figures/mean_std_confusion_matrix.pdf}
+        \caption{Confusion matrix of moral type inference.}
+    \end{subfigure}
+    \caption{Validation results of the baseline simulation.}
+    \label{fig:validation}
+\end{figure}
+
+% \begin{figure}[ht]
+%     \centering
+%     \includegraphics[width=0.8\columnwidth]{figures/action_distribution_across_cases.pdf}
+%     \caption{Action proportion across experiment settings}
+%     \label{fig:ablations}
+% \end{figure}
+
+\paragraph{Simulation Validation}
+To showcase the effectiveness of the simulation, we validated the results from the perspectives of environmental feedback and consistency between morality and behavior.
+For the environment feedback, we randomly selected one agent from each moral type in the baseline experiment, plotting their HP curves alongside their actions in Fig.~\ref{fig:validation} (a). It reflected the correct HP changes caused by various actions. For the morality analysis, we took the kin-focused agent, who illustrates strong familial bonds and self-sacrifice, as an example. Born at step 15 with 3 HP, it gained HP through two big lucky collections, then delivered two children, and frequently shared resources. After another reproduction, however, it did not gain enough energy in time and died. The regular HP fluctuations show a balance between self-preservation and family support. Its life was characterized by frequent communication with family members, seeking alliances for mutual survival, and prioritizing children's well-being over personal gain.
+
+To further verify the morality-behavior consistency, we applied advanced models (GPT-4.1) to perform moral type inference from observed behaviors.  Averaging three inference trials yielded a confusion matrix shown in Fig.~\ref{fig:validation} (b). The inference achieved high accuracy, with the standard deviation under 0.02, showing the reliability of our simulation.
+
+\subsection{Mini-game}
+We constructed an example mini-game to study how morality interacts with other factors for an resource allocation scenario within family. More mini-game examples are in the Appendix.
+% \paragraph{Mini-game 1: Team Forming}
+% Would you choose a highly effective but selfish partner, or a moral but less capable one? Our simulation explores this dilemma by having agents select partners for survival through a system of invitations and observe its results.
+
+% The core variables in this mini-game are moral types and physical capabilities. For each run, we have one agent from each moral type (Selfish, Kin-Focused, Reciprocal, Universal), and randomly sample physical capability score ranging from 1 to 10 with mean as 5 using Gaussian distribution. They interacted one full round including invitation, response, hunting, and resource sharing. As the simulation progressed, agents formed dynamic teams and engaged in actions that impacted their overall health points (HP). For each team that emerged, we computed three key metrics: average team morality (mapped to a continuous scale from 0 to 1), average team capability, and cumulative HP gain over time.
+
+% To analyze the trade-offs between morality, capability, and effectiveness, we generated a bubble scatter plot. The x-axis represents average team capability, the y-axis reflects average moral alignment, and bubble size denotes total HP gain—a proxy for team effectiveness. The Pareto frontier was extracted to highlight teams that were not outperformed on both axes simultaneously. This visualization reveals that while highly moral and highly capable teams can perform well, many of the most effective teams occupy a middle ground—balancing moral alignment with physical strength. These findings suggest that in dilemma settings, neither pure morality nor pure strength guarantees optimal outcomes; instead, synergy across traits is key.
+
+% \paragraph{Results Overview}
+
+% Across multiple simulation rounds, agents exhibited distinct partner selection patterns aligned with their moral profiles. Moral agents (especially \textit{moral strong}) consistently preferred inviting other agents with high moral profile, even when those partners with lower physical capabilities. On the other hand, selfish agents (especially \textit{selfish strong}) prioritized capability over moral values, often forming teams with agents with high short-term utility.
+
+% \paragraph{\textcolor{blue}{Tradeoffs and Outcomes}}
+% \textcolor{blue}{Analysis of team effectiveness revealed that the most successful teams - measured by cumulative HP gain - were not the most moral or the most powerful, but those that were able to strike a balance between the two. Visualizations such as the morality-capability bubble plot showed that mixed teams with moderate moral alignment and high capability often outperformed extreme groups. Our findings suggest that while moral reasoning does inform partnership forming, long-term survival and thriving are dependent on navigating moral dilemmas with a strategic angle, balancing both morality and utility.}
+
+    
+
+To understand how moral dispositions shape resource sharing within families, we studied intergenerational transfers between parents and children. Our experiment involved parent-child dyads from two distinct life stages: young parents with infants and elderly parents with adult children. We modeled four moral dispositions—reproductive selfishness, universal group-focus, reciprocal group-focus, and kin-focus—creating eight unique scenarios. For each, we generated a heatmap to visualize parental transfer behavior. In these maps, the x- and y-axes represent the parents' and child's health (HP), respectively, while the color indicates the amount of resources transferred. The results reveal that provisioning strategies are systematically driven by moral type, showing clear thresholds for initiating aid, different sensitivities to self versus offspring health, and complex interactions between moral orientation and age.
+
+As shown in Fig.~\ref{fig:allocate_kinaltru}, parents generally transfer surplus health points (HP) to their children. This behavior is strongly modulated by age, with older parents allocating significantly more resources as they approach their lifespan limits. Moral dispositions, however, introduce the most striking variations. For instance, reproductively selfish parents tend to hoard resources for self-preservation, while in stark contrast, kin-focused parents consistently prioritize their offspring. In extreme cases, these kin-focused parents sacrifice nearly all of their own HP to ensure their child's survival and fitness.
+
+%he experimental paradigm provides a controlled yet ecologically valid approach to mapping how normative systems influence intergenerational transfer decisions under varying constraints.  
+ 
+% \begin{figure}[h]
+%   \centering
+%   \includegraphics[width=0.8\linewidth]{AuthorKit26/AnonymousSubmission/LaTeX/Figure_1.pdf} 
+%   \caption{}
+%   \label{fig:}
+% \end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=\linewidth]{figures/allocation_heatmaps.png}
+    \caption{Kin Altruism: A Minigame on Family Resource Allocation.}
+    \label{fig:allocate_kinaltru}
+\end{figure}
+
+% 0. Generally speaking, parents tend to allocated their HP if they have enough.
+% 1. Age structure matters: older parents tend to allocate their HP to children because they are approaching max life span.
+% 2. Moral type matter even within families. Selfieh old ones tend to keep their r HP instead of feeding their child. SOme Kin -focused parent would even allocated all their HPs to the children for the prosperity of the family.
+% 3. 
+
+% \begin{figure}[ht]
+%     \centering
+%     \includegraphics[width=\columnwidth]{teaming_propensity_comparison.pdf}
+%     \caption{A comparison of teaming propensity density under abundant (top) and critical (bottom) resource conditions. Under abundance, cooperation is widespread among pro-social types. Under scarcity, cooperation contracts, primarily persisting among Kin-Focused agents.}
+%     \label{fig:teaming_comparison}
+% \end{figure}
+
+% \subsubsection{\textcolor{blue}{The Bonds of Prosperity}}
+
+% \textcolor{blue}{Under conditions of resource abundance, a clear and optimistic pattern of social selection emerged. As shown in Figure 3 (top), agents demonstrated a strong tendency toward assortative teaming based on pro-sociality. Reciprocal and Universal agents, who represent the widest circles of moral concern, preferentially formed coalitions with each other. Their interactions created a vibrant, high-trust ecosystem where the expectation of mutual aid was high, and cooperation flourished. Kin-Focused agents also formed reliable clusters, but the most dynamic network of partnerships existed among the most broadly pro-social agents. Selfish agents, unsurprisingly, were largely isolated, their invitations consistently rejected by a community that could afford to be discerning. In these times of plenty, reputation was paramount, and a cooperative disposition was the most valuable social currency.}
+
+% \subsubsection{\textcolor{blue}{The Fracture of Scarcity}}
+
+% \textcolor{blue}{The introduction of resource scarcity dramatically altered this cooperative landscape. The social fabric, once woven with threads of generalized trust, began to fray. Figure 3 (bottom) illustrates a significant shift in teaming patterns. The once-strong bonds between Reciprocal and Universal agents weakened considerably. As the risks of failed hunts mounted, these agents grew more cautious, less willing to extend trust to those outside of a proven, reliable inner circle.}
+
+% \textcolor{blue}{The heatmap in Figure 3 quantifies this dramatic shift. The deep blue square at the intersection of Reciprocal and Universal agents indicates a steep decline in their propensity to team up. This suggests a "crisis of trust" where the generalized altruism that thrived under abundance became too costly a strategy. Agents retreated to safer, more predictable social bets.}
+
+% \textcolor{blue}{Amid this social fracturing, one form of cooperation proved remarkably resilient: kinship. The enduring density of teaming among Kin-Focused agents highlights the robust evolutionary logic of kin selection \citep{hamilton1964genetical}. When the social world became unpredictable and dangerous, the reliable bonds of family provided a secure foundation for cooperation. Agents defaulted to the most fundamental circle of moral concern.}
+
+% \textcolor{blue}{Interestingly, scarcity created a perverse opportunity for Selfish agents. While they remained untrustworthy partners, the desperation of other agents led to a slight increase in the invitations they received. This dynamic reveals the core tension of the free-rider problem: in dire straits, even a small chance of securing a powerful but selfish ally might seem better than facing the crisis alone, a gamble that often ended in betrayal.}
+
+% \textcolor{blue}{This mini-game reveals that the evolutionary advantage of a given moral strategy is not fixed but is highly contingent on the environment. While broad, inclusive morality can generate widespread cooperation in times of stability, it is a fragile state. The pressure of scarcity can shatter this high-trust equilibrium, forcing a retreat to the more ancient and durable logic of kinship.}
+
+
+
+% \textcolor{blue}{TODO: mini-game description}
+
+% \textcolor{blue}{PLACEHOLDER: one figure for team formation}
+
+% \subsubsection{\textcolor{blue}{Hunting Resource Allocation}}\
+
+% \textcolor{blue}{TODO: mini-game description}
+
+% \textcolor{blue}{PLACEHOLDER: one figure for team formation}
+
+% \subsubsection{\textcolor{blue}{Altruism Sharing}}\
+
+% \textcolor{blue}{TODO: mini-game description}
+
+% \textcolor{blue}{PLACEHOLDER: one figure for team formation}
+
+% \textcolor{blue}{Experiments of different settings go to the appendix}
+
+% \textcolor{gray}{
+% \textbf{Resource Scarcity}
+% We manipulate resource parameters (quantity, spawning rates, nutritional yield, and acquisition difficulty of plants and prey) through an integrated abundance variable that proportionally adjusts these parameters. For this experiment, we simulate a scarce setting of the resources to see how that triggers the evolution of different moral types. This experiment see a draw among kin-focused, reciprocal and selfish, with selfish eventually wins. But looking into the close dynamics, it actually shows that more moral agents are actually more competitive in the process, but the selfish agents moved fast and took a lot of resources at the beginning, getting a head lead that eventually leads to its survival. This experiments show the complexity in the competition - many factors are involved and unnoticed ones can be fatal.
+% \textbf{Social Interaction Cost}
+% To model the differential temporal scales of social versus productive activities, we implement adjustable time costs for social interactions. Our framework allows varying numbers of social interaction rounds (communication, fighting) before agents can undertake resource acquisition or reproduction. This mechanism enables flexible control over the relative investment required for social engagement versus production. 
+% This experiment investigates in a high social interaction cost by allowing only 1 social interaction round before production, making the communication extremely hard. As we can see in Figure \ref{fig:ablations} (c), the selfish agents clearly dominates the population. The reason is that the high communication cost makes the collabortion extremely hard, so moral agents spend more time to get together to take productive actions. Meanwhile selfish agents just go take actions directly, obtaining an advantage.
+% \textbf{Moral Type Observability}
+% The ability to accurately identify others' moral dispositions represents a critical cognitive capability affecting cooperation dynamics. When moral types are directly observable, agents can avoid misattributing intentions and form more stable cooperative relationships. We investigate how this observability capability influences which moral types achieve evolutionary dominance under otherwise identical conditions. As shown in Figure \ref{fig:ablations} (b), the kin and universal moral agents stays in the end while others die out early. Reciprocal moral agents did not survive because he was mistaken as a selfish agent due to misjudgement. This shows that the ability let others know your true moral type is critical for the survival of moral agents.}
+
+% \section{Discussion}
+% \textcolor{blue}{\subsection{Simulation Framework Features}
+% Our simulation framework is designed to support diverse social science research. Its key strengths include:}
+% \textcolor{blue}{\paragraph{Flexibility}: Customizable agent traits and interaction mechanics allow researchers to model various social behaviors and evolutionary pressures.}
+% \textcolor{blue}{\paragraph{Complexity and Realism}: Realistic mechanisms (e.g., hunting risks, reproduction costs, social negotiations) enable exploration of intricate behaviors and strategic interactions.}
+% \textcolor{blue}{\paragraph{Cognitive Modeling}: Design of agent cognitive architecture facilitates realistic agent behavior and explicit decision-making process, supporting nuanced analyses of cognitive-social interactions.}
+% \textcolor{blue}{\paragraph{Automatic Analysis}: Built-in mechanisms for automatic analysis report generation and interactive AI-based Q\&A.}
+
+\subsection{Connections to Established Theories}
+
+Our simulation captures phenomena that align with diverse established theories, validating our framework’s ability to produce meaningful and insightful results.
+
+
+\paragraph{Altruism Promotes Group-level Survival} 
+Consistent with foundational theories of social evolution \citep{hamilton1964genetical,trivers1971evolution,boyd1987evolution,nowak1998dynamics}, our simulations demonstrate that altruistic behaviors (non-selfish agents) generally enhance group-level survival (Fig.~\ref {fig:population}). But it may depend on the cost of collaboration and would not help when the cost is too high to defeat the purpose of collaboration. 
+
+
+\paragraph{Moral Evolution in Prehistoric Societies} 
+We observed that agents with a broader moral scope do not always prevail. Specifically, kin-focused agents tend to be more stable - it always becomes the type of agents lasting to the end except for a high social interaction cost scenario (Fig.~\ref{fig:population}). This finding resonates with anthropological evidence from matrilineal prehistoric societies \citep{holden2003matriliny, mattison2011evolutionary, wang2023ancient} and with theories proposing that the unambiguous biological connection of maternal relationships formed a reliable foundation for early human cooperation \citep{hamilton1964genetical}.
+
+
+% \paragraph{Moral Theory}
+% \textcolor{blue}{
+% Empirical results support the expanding circle model as a unifying moral framework, which elegantly integrates diverse moral characteristics while naturally incorporating evolutionary strategies, highlighting the superiority of broader yet self-consistent moral circles. 
+% The framework also emphasizes cognitive factors, particularly reliable group identification, as critical in moral evolution and the emergence of moral norms facilitating group recognition.}
+
+\subsection{Importance of Cognitive Constraints}
+Our simulations highlight the critical role of cognitive constraints in the evolution of morality, often not stressed upon by previous moral evolution theories. When communication and cooperation are costly, agents with stronger moral dispositions consistently lose their competitive edge, allowing selfish agents to dominate, as shown in Fig.~\ref{fig:population}. This pattern exemplifies bounded rationality \citep{simon1991bounded}, where decision-making is limited by cognitive and temporal constraints. The results also lend support to the Morality-as-Cooperation (MAC) theory \citep{Curry2019MAC}. It posits that morality evolved as a mechanism to facilitate cooperation, implying that if cooperation ceases to confer benefits, morality would likewise lose its utility. Moreover, we observe that many conflicts stem from simple misunderstandings due to limited behavioral cues—an outcome consistent with foundational theories in communication, which emphasize the inherent limits of information transmission \citep{shannon1948mathematical, deutsch1973resolution}. Universal moral type agents, although risks being exploited, wins an advantage for avoiding being misunderstood and targeted. This connects to theories like reputation and costly signaling \citep{alt1988reputation, gintis2001costly, nowak2005evolution}
+
+\subsection{Connections with More Theories}
+
+We observe that universal moral agents often get exploited by less moral agents in the simulation, illustrating altruistic punishment’s role in cooperation maintenance~\citep{fehr2002altruistic}. Sometimes the agents choose the wrong time to reproduce because they see other agents' reproduction activities, connecting with social learning theory \citep{bandura1977social}. For a comprehensive list of theoretical connections, see the Appendix for details.
+
+
+
+\section{Discussion}
+\subsection{Our Contribution and Scope}
+The primary objective of this paper is to introduce this novel framework and demonstrate its versatility for investigating a wide range of questions in moral evolution. It is a complementary approach to traditional research in anthropology and evolutionary biology. Its strength lies in providing rich, detailed simulations and enabling the study of complex factor interactions. 
+Consequently, we do not aim to provide an exhaustive set of experiments to definitively resolve any single factor. Instead, our goal is to provide a robust tool for future studies to explore these questions in greater depth. 
+% Recognizing this role is crucial for the proper application of our method.
+
+\subsection{Limitations and Future Directions}
+
+The current project scope necessitates leaving certain areas for future development. We have identified the following key opportunities for improvement:
+
+Addressing LLM Reasoning Deficiencies: Our preliminary experiments reveal that LLM models struggle to accurately calculate granular spatial and temporal relationships, which can hinder the simulation's core functionality. We plan to design specialized mechanisms to overcome this limitation in LLM reasoning.
+
+Incorporating Sexual Selection: Sexual selection is a major force in evolutionary dynamics. Given its complexity, we believe it is best addressed in a dedicated, standalone project that can introduce a systematic set of corresponding mechanisms.
+
+Extending Simulation Complexity: The framework could be extended beyond the current hunter-gatherer setting to include mechanisms such as toolmaking, marketing, and other features of more complex societies. While increasing realism is always a possibility, such additions can inadvertently complicate experimental controls and obscure the analysis of specific variables. We plan to further evaluate prominent topics in the field of moral evolution to guide the strategic inclusion of new features in the future.
+
+Moral Framework Extension. As emphasized earlier, our framework is designed to support flexible customization of moral frameworks. Given the vast diversity of moral theories, indiscriminately incorporating additional frameworks would be misguided. We plan to systematically enhance this part of the framework when we identify commonly requested or theoretically significant extensions. 
+
+
+\section{Conclusions}
+    
+We present an LLM-based simulation framework for systematically studying complex social evolutionary dynamics, exemplified by moral evolution in prehistoric hunter-gatherer contexts. Our experiments show that different moral dispositions succeed under different environmental and cognitive conditions, aligning with established social science theories and validating the framework. Key findings include kin-focused morality tending to survive more stably, selfish strategies prevailing under high communication costs, and the unique challenge of reliable group identification. This framework offers a novel, extensible paradigm for exploring diverse social phenomena beyond morality.
+
+\bibliography{aaai2026}
+
+% Check whether the conference requires a reproducibility checklist to be included in the paper.
+% If so, you can uncomment the following line and ajust the path to include it.
+% \input{sections/ReproducibilityChecklist.tex}
+
+\input{sections/appendix.tex}
+
+\end{document}

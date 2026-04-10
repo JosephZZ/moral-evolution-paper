@@ -1,0 +1,204 @@
+\appendix
+% \tableofcontents
+% \startcontents  % 开始记录附录目录
+% \printcontents{}{1}{\section*{Table of Contents}}  % 在附
+\section*{Appendix}
+
+\addcontentsline{toc}{section}{Appendix}
+% \minitoc
+
+\section{General Discussions}
+\subsection{Code Release}
+Our baseline code is attached in the submission as a minimal viable program. Full code will be released upon paper publication under the MIT license. 
+% The code is available at \url{https://anonymous.4open.science/r/Social-Simulation-with-Moral-Agents-94B5}.
+This platform will be actively maintained and updated to support more features to support more research questions. We welcome any collaboration, contribution, feedback, and feature requests.
+
+\subsection{Ethical Consideration}
+Our project is, at its core, a simulation study of ethics itself. As such, it does not raise the typical ethical concerns associated with methodological research that might be misused.
+Importantly, our findings can be interpreted as supporting the general proposition that morality is beneficial for humans. The factors that sometimes cause moral agents to fail in evolutionary competition can, in fact, offer valuable insights for promoting social causes and designing mechanisms to enhance the evolutionary advantage of moral individuals.
+However, we caution against the simplistic interpretation that the conditions under which moral agents fail to prevail are evidence that morality is not advantageous for humans. Such a view is an oversimplification. First, modern society differs profoundly from prehistoric hunter-gatherer contexts. Humans have evolved to be born with moral dispositions \citep{hamlin2011young, bloom2013just, warneken2006altruistic}. Also in contemporary human societies, almost no one can survive without collaboration, promoting moral behaviors. Second, it is crucial to understand the specific causal role that morality plays in success or failure. For example, our results show that when communication is prohibitively costly, moral agents may be outcompeted by selfish ones. This occurs because morality often inclines agents toward collaboration, which may not be optimal in situations where cooperation is particularly costly. However, morality does not require agents to cooperate indiscriminately; moral agents could, in principle, maintain their moral disposition while choosing to act independently when cooperation is not advantageous, and then collaborate when conditions improve. As revealed by our simulation and common wisdom, being moral does not guarantee success in every circumstance, but a lack of morality fundamentally constrains one's potential for success.
+
+\subsection{More Discussion Over Our Methodology}
+As we have emphasized, our method should be viewed as a complement to traditional mathematical models, not a replacement. By incorporating rich psychological realism into the simulation, our approach enables researchers to investigate how numerous factors interact in complex ways. However, this increased realism also means that simulation results are sensitive to the specific details of these factors and may not yield the definitive answers that highly abstract mathematical models can provide.
+
+Yet, definitive answers are not always the primary goal of research, especially in the social sciences. Often, the objective is to uncover previously unnoticed factors that influence a phenomenon or to explore the intricate interplay among multiple variables. Such goals are difficult to achieve with traditional mathematical models, which require all relevant factors to be known or assumed in advance. Historically, researchers have relied on field studies to observe human behavior and identify these factors, but simulation now offers a cost-effective means to assist in discovery and hypothesis generation, potentially accelerating progress in the field.
+
+Moreover, when the number of interacting factors becomes too great for analytical calculation, simulation becomes indispensable. While simulations inevitably deviate from reality—just as any modeling method, and such deviations may be amplified in large-scale runs—they can still provide valuable insights into research questions. Simulations can reveal what is possible, and the underlying mechanisms and developmental dynamics they expose may remain relevant even if the precise outcomes differ from those observed in the real world.
+
+\subsection{Flexibility of the Simulation Platform}
+Our platform is designed to be flexible and extensible. By varying the configuration settings, one can use the same platform to study different research questions. For example, we have used the same platform to study the effect of different moral types, different resource distributions, different communication costs, etc. In the section below, we also list a list of findings that are connected to different research areas that could possibly be investigated further with our platform.
+
+Moreover, we support researchers to extend beyond morally related value dispositions. One can flexibly define the value dispositions of the agents by writing appropriate prompt templates. For example, one can define agents to be of different cultural backgrounds, different religions, different political views, etc. Or one can also study the effect of specific social norms by prescribing the agents to follow certain social rules, e.g, always equal distribution VS always contribution-based distribution, etc. Hunting-gathering environment equipped with general social interaction dynamics is very general to support a wide range of research questions.
+
+\section{Discovered Phenomena That Connect to Other Theories}
+As mentioned, one key feature of what our platform can provide is that we can naturally see a lot of emergent phenomena that matter for social evolution regarding morality. These phenomena were abstracted away in the traditional mathematical models. But on our platform, they will surface on their own to deepen our understanding. Those phenomena or topics were traditionally a subject of research areas on their own, but now we can study them in a unified framework. 
+
+We list some of the observed phenomena and identify some of the theories that are related to them in Table~\ref{tab:project_findings}. This list is definitely not exhaustive. We hope this can provide a good starting point for future researchers to discover more phenomena and theories.
+
+We also encourage researchers to use our platform as a new way to study these phenomena and theories.
+
+\begin{table*}[ht]
+\caption{Discovered Phenomena and Related Theories}
+\label{tab:project_findings}
+% \small
+\setlength{\tabcolsep}{4pt}
+% \renewcommand{\arraystretch}{0.8}  % Reduce vertical spacing between rows
+\begin{tabular}{p{8.5cm}p{8.5cm}}
+\hline
+\textbf{Phenomena Findings from Experiments} & \textbf{Related Theories} \\
+\hline
+\parbox[t]{8.5cm}{Coordination is costly: \\ 
+\hspace*{1em} $\bullet$ Communication takes time and can reduce the time for other important things.} & 
+\parbox[t]{8.5cm}{\textit{Coordination Cost Theory} \citep{simon1991bounded} \\
+"Organizations face bounded rationality where coordination costs limit optimal decision-making"} \\
+\hline
+\parbox[t]{8.5cm}{Moral judgment based on actions: \\
+\hspace*{1em} $\bullet$ Agents evaluate others' morality by observing how they treat third parties. \\
+\hspace*{1em} $\bullet$ Actions toward others, not just toward oneself, shape moral reputation.} & 
+\parbox[t]{8.5cm}{\textit{Moral Judgment Theory} \citep{haidt2001emotional} \\
+"People make rapid moral judgments based on observed behaviors and their emotional responses" \\
+\textit{Impression Formation} \citep{asch1946forming} \\
+"Observers form impressions of others' character based on their actions toward third parties"} \\
+\hline
+
+\parbox[t]{8.5cm}{Misunderstandings can lead to major conflicts: \\
+\hspace*{1em} $\bullet$ Agents may misinterpret others' intentions or actions, leading to unnecessary conflicts. \\
+\hspace*{1em} $\bullet$ Limited communication can cause agents to make incorrect assumptions about others' moral types or goals.} & 
+\parbox[t]{8.5cm}{\textit{Communication Theory} \citep{shannon1948mathematical} \\
+"Information transmission is inherently imperfect, leading to potential misunderstandings and conflicts" \\
+\textit{Conflict Resolution} \citep{deutsch1973resolution} \\
+"Many conflicts arise from misperceptions and misunderstandings rather than actual incompatible goals"} \\
+\hline
+
+\hline
+\parbox[t]{8.5cm}{Predictable morality acts as a reputation/clear signal: \\
+\hspace*{1em} $\bullet$ Universal moral agents, by rejecting violence completely, benefit from being clearly understood. \\
+\hspace*{1em} $\bullet$ Such behavior is costly though, making them subject to exploitation} &
+\parbox[t]{8.5cm}{\textit{Costly Signaling Theory} \citep{gintis2001costly} \\
+"Consistently moral behavior, despite its costs, serves as an honest signal of cooperative intent, reducing the risk of being misjudged as a threat." \\
+\textit{Indirect Reciprocity} \citep{nowak2005evolution} \\
+"A clear reputation for cooperation, built through predictable actions, is essential for reciprocal altruism and protects an agent from being wrongly punished."} \\
+\hline
+\parbox[t]{8.5cm}{Universal moral agents get exploited: \\
+\hspace*{1em} $\bullet$ Agents who never retaliate or punish others' bad behavior become targets of exploitation. \\
+\hspace*{1em} $\bullet$ Their unconditional cooperation makes them vulnerable to free-riders.} & 
+\parbox[t]{8.5cm}{\textit{Altruistic Punishment} \citep{fehr2002altruistic} \\
+"Cooperation requires punishment of defectors; pure altruism without retaliation is vulnerable to exploitation" \\
+\textit{Strong Reciprocity} \citep{bowles2004evolution} \\
+"Evolutionary success requires both cooperation and punishment of non-cooperators"} \\
+\hline
+\parbox[t]{8.5cm}{Group membership is contested: \\
+\hspace*{1em} $\bullet$ Agents might not agree on who is in the group that can share resources.} & 
+\parbox[t]{8.5cm}{\textit{Social Identity Theory} \citep{tajfel1979individuals} \\
+"Group boundaries are fluid and contested, with membership determined by shared identity markers and mutual recognition"} \\
+\hline
+\parbox[t]{8.5cm}{Distribution methods are complex: \\
+\hspace*{1em} $\bullet$ How to distribute? Distribute evenly, based on contribution, harm taken, need, can affect both the success of the end result and each other's judgment.} & 
+\parbox[t]{8.5cm}{\textit{Distributive Justice} \citep{konow2003which} \\
+"Fairness judgments depend on multiple principles, including equality, need, and contribution"} \\
+\hline
+\parbox[t]{8.5cm}{Careful planning is important: \\
+\hspace*{1em} $\bullet$ Reproduction schedule is important. Too frequent can cause both parents and children to die.} & 
+\parbox[t]{8.5cm}{\textit{Life History Theory} \citep{kaplan1992evolution} \\
+"Organisms face trade-offs between current and future reproduction, with timing being crucial for survival"} \\
+\hline
+\parbox[t]{8.5cm}{Tendency to cooperate can sometimes have negative effect: \\ 
+\hspace*{1em} $\bullet$ Moral agents have a tendency to collaborate to acquire resources, but in some particular setting (with competition, resources being in some way), taking faster action instead of collaboration may be more crucial. \\
+\hspace*{1em} $\bullet$ Moral agents tend to agree to collaborate to hunt, but they might not be in a good position to hunt.} & 
+\parbox[t]{8.5cm}{\textit{Cooperation Dilemmas} \citep{bowles2004evolution} \\
+"Cooperation can be maladaptive when individual action would yield higher returns"} \\
+\hline
+\parbox[t]{8.5cm}{Moral agents' mutual dependency sometimes leads to disaster end: \\
+\hspace*{1em} $\bullet$ Moral agents tend to trust others to help them later, but the others may also think the same, and none have the extra capacity to help.} & 
+\parbox[t]{8.5cm}{\textit{Trust and Cooperation} \citep{fehr2002altruistic} \\
+"Altruistic punishment can maintain cooperation but may lead to cascading failures when trust is misplaced"} \\
+\hline
+\parbox[t]{8.5cm}{Mutual reinforcing / social pressure: \\
+\hspace*{1em} $\bullet$ When some agents reproduce, others feel compelled to do so too, even though their HP was not very high.} & 
+\parbox[t]{8.5cm}{\textit{Social Learning Theory} \citep{bandura1977social} \\
+"Social learning and imitation can lead to behavioral contagion even when not optimal for individuals"} \\
+\hline
+\end{tabular}
+\end{table*}
+
+
+% \newpage
+\label{sec:system_agent_design}
+\input{sections/appendix_system_agent_design.tex}
+
+
+% \newpage
+\label{sec:simulation_analysis}
+\input{sections/appendix_data_analysis_agent.tex}
+
+
+% \newpage
+\label{sec:prompts}
+\input{sections/prompts.tex}
+
+
+% \newpage
+\label{sec:experiments}
+% \input{sections/experiments.tex}
+
+\subsection{Baseline Configuration Parameters}
+
+\begin{table*}[htbp]
+\centering
+\small
+\begin{tabular}{lp{1.2cm}p{6.5cm}}
+\hline
+\textbf{Parameter} & \textbf{Value} & \textbf{Description} \\
+\hline
+\multicolumn{3}{l}{\textbf{Simulation Parameters}} \\
+\hline
+Max time steps & 80 & Total number of time steps the simulation will run. \\
+Social interaction steps & 2 & Number of steps designated for social rounds. \\
+Other agent moral type visibility & Visible & Whether agents can observe others' moral types. \\
+
+\hline
+\multicolumn{3}{l}{\textbf{Agent Parameters}} \\
+\hline
+Initial Agent Count & 8 & Total number of agents at initialization. \\
+Agent type distribution &  & Proportions of each behavioral archetype. \\
+-- Universal group morality & 25\% &  \\
+-- Reciprocal group morality & 25\% &  \\
+-- Kin-focused morality & 25\% &  \\
+-- Reproductive selfishness & 25\% &  \\
+Steps of recent activities perceivable & 15 & Number of previous steps an agent can perceive. \\
+Initial HP & 20 & Initial health points of agents. \\
+Max HP & 40 & Maximum health points of agents. \\
+Initial age & 10 & Initial age of agents. \\
+Max age & 20 & Maximum age of agents. \\
+Min HP for reproduction & 12 & Minimum HP threshold for reproduction. \\
+HP cost for reproduction & 10 & HP cost for reproduction action. \\
+Minimum age for reproduction & 4 & Minimum age threshold for reproduction. \\
+Offspring initial HP & 3 & Initial HP of newly created offspring. \\
+Physical ability (mean, std) & 6, 0 & Mean and standard deviation of agent ability. \\
+Physical scaling (slope, intercept) & 5, 0.1 & Slope and intercept for ability-based interactions. \\
+\hline
+\multicolumn{3}{l}{\textbf{Resource Parameters}} \\
+\hline
+Plant: Initial quantity & 4 & Starting number of edible units per plant. \\
+Plant: Capacity & 3 & Maximum capacity for plant nodes. \\
+Plant: Respawn delay & 10 steps & Turns required before depleted plants respawn. \\
+Plant: Nutrition & 3 & HP restored per unit consumed. \\
+Prey: Initial quantity & 4 & Initial number of prey in the environment. \\
+Prey: HP (mean, std) & 5, 1 & Mean and standard deviation of prey health points. \\
+Prey: Physical ability & 4 & Physical ability value of prey. \\
+Prey: Respawn rate & 0.1 & Probability of new prey spawning per step. \\
+Prey: Max quantity & 6 & Maximum number of prey allowed in environment. \\
+Prey: Difficulty & 2 & Abstract scaling factor for prey behavior/resistance. \\
+Resource abundance & 2 & Global multiplier for resource density. \\
+\hline
+\multicolumn{3}{l}{\textbf{LLM Parameters}} \\
+\hline
+Provider & OpenAI & LLM provider name. \\
+Model & GPT-4.1-mini-2025-04-14 & Identifier for the chat model used. \\
+Max retries & 10 & Number of retries for failed LLM actions. \\
+Reflection round & Enabled & Whether two-stage prompting is used. \\
+\hline
+\end{tabular}
+\caption{This table shows the configuration parameters, their descriptions, and the values used for baseline experiments. Other experiments change only their appropriate parameters: for resource scarcity, we change the resource abundance to 1x; for high communication cost, we change the social interaction steps to 1; for moral type observability, we change the visibility of other agents' moral types to be invisible.}
+\label{tab:baseline_config}
+\end{table*}
