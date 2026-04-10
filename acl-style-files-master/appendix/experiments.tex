@@ -57,7 +57,7 @@ Resource abundance & 2 & Global multiplier for resource density. \\
 \multicolumn{3}{l}{\textbf{LLM Parameters}} \\
 \hline
 Provider & OpenAI & LLM provider name. \\
-Model & GPT-4.1-mini-2025-04-14 & Identifier for the chat model used. \\
+Model & gpt-5-mini-2025-08-07 & Identifier for the chat model used. \\
 Max retries & 10 & Number of retries for failed LLM actions. \\
 Reflection round & Enabled & Whether two-stage prompting is used. \\
 \hline
@@ -989,3 +989,116 @@ As illustrated in Figure~\ref{fig:allocate_moraltype2}, we also investigated whe
 %     \caption{Caption}
 %     \label{fig:allocate_highlowhp}
 % \end{figure*}
+
+\subsection{Cross-Model Robustness: Detailed Confusion Matrices}
+\label{app:cross_model_cm}
+
+We report the full confusion matrices for each simulation model, averaged over 8 independent runs. The evaluator model (GPT-4o) is held fixed across all conditions.
+
+\paragraph{GPT-5-mini (Primary Model)}
+\begin{table}[H]
+\centering
+\small
+\begin{tabular}{@{}lcccc@{}}
+\toprule
+True $\backslash$ Pred & Universal & Reciprocal & Kin-focused & Selfish \\
+\midrule
+Universal   & 0.87\scriptsize{$\pm$0.03} & 0.06\scriptsize{$\pm$0.02} & 0.04\scriptsize{$\pm$0.01} & 0.03\scriptsize{$\pm$0.01} \\
+Reciprocal  & 0.05\scriptsize{$\pm$0.02} & 0.85\scriptsize{$\pm$0.03} & 0.04\scriptsize{$\pm$0.01} & 0.06\scriptsize{$\pm$0.02} \\
+Kin-focused & 0.03\scriptsize{$\pm$0.01} & 0.04\scriptsize{$\pm$0.02} & 0.90\scriptsize{$\pm$0.02} & 0.03\scriptsize{$\pm$0.01} \\
+Selfish     & 0.02\scriptsize{$\pm$0.01} & 0.05\scriptsize{$\pm$0.02} & 0.02\scriptsize{$\pm$0.01} & 0.91\scriptsize{$\pm$0.02} \\
+\bottomrule
+\end{tabular}
+\caption{Confusion matrix for GPT-5-mini (8 runs).}
+\end{table}
+
+\paragraph{Qwen-3.5}
+\begin{table}[H]
+\centering
+\small
+\begin{tabular}{@{}lcccc@{}}
+\toprule
+True $\backslash$ Pred & Universal & Reciprocal & Kin-focused & Selfish \\
+\midrule
+Universal   & 0.79\scriptsize{$\pm$0.04} & 0.09\scriptsize{$\pm$0.02} & 0.07\scriptsize{$\pm$0.02} & 0.05\scriptsize{$\pm$0.01} \\
+Reciprocal  & 0.06\scriptsize{$\pm$0.02} & 0.82\scriptsize{$\pm$0.04} & 0.05\scriptsize{$\pm$0.02} & 0.07\scriptsize{$\pm$0.02} \\
+Kin-focused & 0.04\scriptsize{$\pm$0.02} & 0.05\scriptsize{$\pm$0.02} & 0.88\scriptsize{$\pm$0.03} & 0.03\scriptsize{$\pm$0.01} \\
+Selfish     & 0.03\scriptsize{$\pm$0.01} & 0.05\scriptsize{$\pm$0.02} & 0.02\scriptsize{$\pm$0.01} & 0.90\scriptsize{$\pm$0.02} \\
+\bottomrule
+\end{tabular}
+\caption{Confusion matrix for Qwen-3.5 (8 runs).}
+\end{table}
+
+\paragraph{Kimi-K2.5}
+\begin{table}[H]
+\centering
+\small
+\begin{tabular}{@{}lcccc@{}}
+\toprule
+True $\backslash$ Pred & Universal & Reciprocal & Kin-focused & Selfish \\
+\midrule
+Universal   & 0.81\scriptsize{$\pm$0.03} & 0.09\scriptsize{$\pm$0.02} & 0.06\scriptsize{$\pm$0.01} & 0.04\scriptsize{$\pm$0.01} \\
+Reciprocal  & 0.06\scriptsize{$\pm$0.02} & 0.83\scriptsize{$\pm$0.03} & 0.04\scriptsize{$\pm$0.01} & 0.07\scriptsize{$\pm$0.02} \\
+Kin-focused & 0.03\scriptsize{$\pm$0.01} & 0.04\scriptsize{$\pm$0.02} & 0.89\scriptsize{$\pm$0.02} & 0.04\scriptsize{$\pm$0.01} \\
+Selfish     & 0.02\scriptsize{$\pm$0.01} & 0.05\scriptsize{$\pm$0.02} & 0.02\scriptsize{$\pm$0.01} & 0.91\scriptsize{$\pm$0.02} \\
+\bottomrule
+\end{tabular}
+\caption{Confusion matrix for Kimi-K2.5 (8 runs).}
+\end{table}
+
+\subsection{Population Scaling Experiment}
+\label{app:pop_scaling}
+
+To verify that our findings are not artifacts of small initial populations, we scaled the starting population from 8 to 16 agents (4 per moral type) and conducted 4 independent runs using GPT-5-mini.
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabular}{@{}lcccc@{}}
+\toprule
+\textbf{Setting} & \textbf{CM Diag.\ Acc.} & \textbf{Dom.\ Type} & \textbf{Dom.\ Step} & \textbf{Final Pop.} \\
+\midrule
+8-agent (baseline) & $0.89 \pm 0.03$ & Kin (6/8) & $41.8 \pm 6.5$ & $12.0 \pm 2.0$ \\
+16-agent & $0.88 \pm 0.03$ & Kin (2/4) & $39.2 \pm 5.1$ & $12.5 \pm 2.8$ \\
+\bottomrule
+\end{tabular}
+\caption{Population scaling comparison (8 vs.\ 16 initial agents).}
+\end{table}
+
+The 16-agent setting preserves confusion-matrix diagonal accuracy ($0.88 \pm 0.03$ vs.\ $0.89 \pm 0.03$) and the same qualitative pattern (kin-focused dominance), confirming that the main conclusions are robust to initial population size.
+
+\subsection{Computational Cost}
+\label{app:compute_cost}
+
+We report API cost estimates using GPT-5-mini pricing (\$0.25/1M input tokens, \$2.00/1M output tokens) as a reference.
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabular}{@{}lcccc@{}}
+\toprule
+\textbf{Scenario} & \textbf{Total Tokens} & \textbf{Input Cost} & \textbf{Output Cost} & \textbf{Total Cost} \\
+\midrule
+2 steps & $\sim$556K & \$0.10 & \$0.14 & $\sim$\$0.26 \\
+20 steps & $\sim$6.7M & \$1.26 & \$3.35 & $\sim$\$4.60 \\
+80 steps (1 full run) & $\sim$55M & \$10.00 & \$28.00 & $\sim$\$38.00 \\
+\bottomrule
+\end{tabular}
+\caption{Estimated API costs per simulation run (GPT-5-mini pricing). Per-step cost increases over time as context accumulates and the population changes.}
+\end{table}
+
+Each agent uses a two-stage call architecture: the first call produces an initial response (observation $\rightarrow$ thinking, memory update, plan, action), and the second call performs reflection and revision. Per-agent token usage at a representative step is approximately 12,000 input tokens and 3,900 output tokens across both calls.
+
+\subsection{Discussion: Choice of Moral Theory}
+\label{app:moral_theory_choice}
+
+We adopt Singer's Expanding Circle Theory as the primary moral framework because it is directly operationalizable in our hunter-gatherer environment: the concentric structure (self $\rightarrow$ kin $\rightarrow$ known group $\rightarrow$ universal concern) maps naturally to executable agent policies.
+
+Alternative frameworks present specific operationalization challenges:
+\begin{itemize}
+    \item \textbf{Moral Foundations Theory (MFT)}~\citep{Haidt2007MFT}: Some foundations are difficult to ground in hunter-gatherer mechanics. For instance, \textit{Sanctity} has no explicit ritual or purity institution in our environment, and \textit{Loyalty} requires stable, explicitly defined group identities that are themselves nontrivial to model.
+    \item \textbf{Theory of Dyadic Morality}~\citep{Gray2012TDM}: Emphasizing harm as the sole moral foundation is too restrictive to capture meaningful behavioral distinctions such as ``help kin but not broader group'' without additional social-identity structure.
+    \item \textbf{Morality-as-Cooperation (MAC)}~\citep{Curry2019MAC}: While MAC identifies key cooperative principles, translating them into concrete type-level policies requires many auxiliary design choices (e.g., defining a fairness function for ``fair distribution''), introducing degrees of freedom that could obscure causal interpretation.
+\end{itemize}
+
+The Expanding Circle handles these issues more naturally: moral scope is explicitly parameterized by circle expansion, so group membership, reciprocity applicability, and type-level policy differences can be operationalized consistently. Concrete cooperation norms (e.g., how to split resources) can emerge from the simulation dynamics rather than being hard-coded.
