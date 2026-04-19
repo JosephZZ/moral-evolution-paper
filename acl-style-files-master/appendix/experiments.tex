@@ -105,116 +105,6 @@ For each simulation scenario, the figures include:
 \end{figure}
 
 
-\textbf{Resource Scarcity}
-We manipulate resource parameters (quantity, spawning rates, nutritional yield, and acquisition difficulty of plants and prey) through an integrated abundance variable that proportionally adjusts these parameters. For this experiment, we simulate an abundant and a scarce setting of the resources to see how that triggers the evolution of different moral types. 
-
-When the resource is abundant, as shown in Figure~\ref{fig:abundant_pop}, the evolution trends of all types of agents are fairly similar, especially in the early period. This reflects that abundant resource brings enough support for each agent to survive. However, in the end, the selfish and reciprocal agents dominate the world, indicating that their focus on self-interest helps them keep occupying resources.
-
-\begin{figure}[H]
-    \centering
-    \begin{subfigure}[t]{0.5\textwidth}
-        \centering
-        \includegraphics[width=\linewidth]{appendix_figures/populations/population_Abundant_resource.pdf}
-        \caption{Agent type ratio and count over time}
-    \end{subfigure}
-    \hfill
-    
-    \begin{subfigure}[t]{0.48\textwidth}
-        \centering
-        \includegraphics[width=\linewidth]{appendix_figures/HP/hp_change_Abundant_resource_agent_3.pdf}
-        \caption{HP and causes of an agent from a survival type}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}[t]{0.48\textwidth}
-        \centering
-        \includegraphics[width=\linewidth]{appendix_figures/HP/hp_change_Abundant_resource_agent_8.pdf}
-        \caption{HP and causes of an agent from an extinct type}
-    \end{subfigure}
-    \caption{Agent type ratio and count, and two example agent HP over time (Case: abundant resource)}
-    \label{fig:abundant_pop}
-\end{figure}
-
-When the resource is scarce, as shown in Figure~\ref{fig:scarce_pop}, the experiment sees a draw among kin-focused, reciprocal, and selfish, with selfish eventually winning. But looking into the close dynamics, it actually shows that more moral agents are actually more competitive in the process, but the selfish agents moved fast and took a lot of resources at the beginning, getting a head lead that eventually leads to their survival. These experiments show the complexity in the competition - many factors are involved, and unnoticed ones can be fatal.
-
-\begin{figure}[H]
-    \centering
-    \begin{subfigure}[t]{0.5\textwidth}
-        \centering
-        \includegraphics[width=\linewidth]{appendix_figures/populations/population_Scarce_resource.pdf}
-        \caption{Agent type ratio and count over time}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}[t]{0.48\textwidth}
-        \centering
-        \includegraphics[width=\linewidth]{appendix_figures/HP/hp_change_Scarce_resource_agent_2.pdf}
-        \caption{HP and causes of an agent from a survival type}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}[t]{0.48\textwidth}
-        \centering
-        \includegraphics[width=\linewidth]{appendix_figures/HP/hp_change_Scarce_resource_agent_8.pdf}
-        \caption{HP and causes of an agent from an extinct type}
-    \end{subfigure}
-    \caption{Agent type ratio and count, and two example agent HP over time (Case: scarce resource)}
-    \label{fig:scarce_pop}
-\end{figure}
-
-
-\textbf{Moral Type Observability}
-The ability to accurately identify others' moral dispositions represents a critical cognitive capability affecting cooperation dynamics. When moral types are directly observable, agents can avoid misattributing intentions and form more stable cooperative relationships. We investigate how this observability capability influences which moral types achieve evolutionary dominance under otherwise identical conditions. As shown in Figure \ref{fig:invisible_pop} (b), the kin and universal moral agents stay in the end while others die out early. Reciprocal moral agents did not survive because he was mistaken as selfish agents due to misjudgment. This shows that the ability to let others know your true moral type is critical for the survival of moral agents.
-
-\begin{figure}[H]
-    \centering
-    \begin{subfigure}[t]{0.5\textwidth}
-        \centering
-        \includegraphics[width=\linewidth]{appendix_figures/populations/population_Moral_invisiable.pdf}
-        \caption{Agent type ratio and count over time}
-    \end{subfigure}
-    \hfill
-    
-    \begin{subfigure}[t]{0.48\textwidth}
-        \centering
-        \includegraphics[width=\linewidth]{appendix_figures/HP/hp_change_Moral_invisiable_agent_3.pdf}
-        \caption{HP and causes of an agent from a survival type}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}[t]{0.48\textwidth}
-        \centering
-        \includegraphics[width=\linewidth]{appendix_figures/HP/hp_change_Moral_invisiable_agent_5.pdf}
-        \caption{HP and causes of an agent from an extinct type}
-    \end{subfigure}
-    \caption{Agent type ratio and count, and two example agent HP over time (Case: moral invisible)}
-    \label{fig:invisible_pop}
-\end{figure}
-
-\textbf{Social Interaction Cost}
-To model the differential temporal scales of social versus productive activities, we implement adjustable time costs for social interactions. Our framework allows varying numbers of social interaction rounds (communication, fighting) before agents can undertake resource acquisition or reproduction. This mechanism enables flexible control over the relative investment required for social engagement versus production. 
-This experiment investigates a high social interaction cost by allowing only 1 social interaction round before production, making the communication extremely hard. As we can see in Figure \ref{fig:cost_pop} (c), the selfish agents clearly dominate the population. The reason is that the high communication cost makes the collaboration extremely hard, so moral agents spend more time getting together to take productive actions. Meanwhile, selfish agents just go take actions directly, obtaining an advantage.
-
-\begin{figure}[H]
-    \centering
-    \begin{subfigure}[t]{0.5\textwidth}
-        \centering
-        \includegraphics[width=\linewidth]{appendix_figures/populations/population_High_social_cost.pdf}
-        \caption{Agent type ratio and count over time}
-    \end{subfigure}
-    \hfill
-    
-    \begin{subfigure}[t]{0.48\textwidth}
-        \centering
-        \includegraphics[width=\linewidth]{appendix_figures/HP/hp_change_High_social_cost_agent_1.pdf}
-        \caption{HP and causes of an agent from a survival type}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}[t]{0.48\textwidth}
-        \centering
-        \includegraphics[width=\linewidth]{appendix_figures/HP/hp_change_High_social_cost_agent_7.pdf}
-        \caption{HP and causes of an agent from an extinct type}
-    \end{subfigure}
-    \caption{Agent type ratio and count, and two example agent HP over time (Case: high social cost)}
-    \label{fig:cost_pop}
-\end{figure}
-
 \textbf{Single Morality Scenarios}
 
 Besides the simulations with various environment settings, we also conducted four experiments, where each experiment only had one single type of morality, with the baseline environment settings.
@@ -320,13 +210,7 @@ From the agent dynamics shown in Figure~\ref{fig:universal_pop},~\ref{fig:recipr
 
 The lifespan distributions of agents are visualized in Figures~\ref{fig: lifespan_main} to \ref{fig: lifespan_single}. Each figure is a histogram where the x-axis represents lifespan (in time steps), and the y-axis represents the frequency of agents. The bars indicate the count of agents with specific lifespans.
 
-By comparing different settings with the baseline experiments, we could draw several conclusions, which are probably naive, but they validate our simulation:
-\begin{itemize}
-    \item Abundant resources increase the lifespan of agents, especially for selfish agents;
-    \item Scarce resources give a higher variation of lifespan
-    \item High social cost makes selfish agents difficult to pass the baby period
-    \item Invisible morality balances the lifespan of the different moral agents
-\end{itemize}
+By comparing different settings with the baseline experiments, we observe that lifespan distributions vary across conditions, reflecting the differential survival pressures imposed by each setting.
 
 
 \begin{figure}[H]
@@ -878,6 +762,164 @@ From the figure, we noticed that in most scenarios, agents who kill the prey do 
     \label{fig: hunt distribution main}
 
 \end{figure}
+
+\subsubsection{Multi-Run Replicates and Outcome Distribution}
+\label{sec:replicates}
+
+To characterise the stochastic variability of our simulation and demonstrate that the ablation effects reported in the main paper are not artefacts of a single seed, we executed the Baseline setting $N=8$ times and each of the three ablation settings $N=4$ times ($N=20$ in total), using distinct random seeds throughout. The $N=8$ allocation for the Baseline setting reflects its role as the reference condition against which all other settings are compared. The runs featured in the main-paper population figure are drawn from this pool and are marked with a star ($\star$) in Figure~\ref{fig:replicates_grid}.
+
+Table~\ref{tab:replicate_outcomes} reports the run-level \emph{win counts} per setting: the number of runs in which each moral type is among the surviving types at simulation end (step 80). Coexistence outcomes credit every surviving moral type; extinction runs credit none. The distribution confirms the main-paper narrative at the aggregate level: kin-focused morality wins 6 of 8 Baseline runs, reciprocal morality wins 3 of 4 under Resource Scarcity, universal morality wins 2 of 4 under Social Interaction Cost, and universal morality wins in all 4 Moral Observability runs (with kin-focused morality coexisting in 2 of them).
+
+\begin{table*}[htbp]
+\centering
+\caption{Run-level win counts across 20 multi-run replicates. A moral type ``wins'' a run if it is among the surviving types at step~80; coexistence runs credit every surviving type, while extinction runs credit none. Bold entries indicate the dominant outcome per setting. An additional \emph{Extinction} column counts runs in which no moral type survives.}
+\label{tab:replicate_outcomes}
+\small
+\begin{tabular}{l c c c c c c}
+\toprule
+\textbf{Setting} & \textbf{N} & \textbf{Universal} & \textbf{Reciprocal} & \textbf{Kin-focused} & \textbf{Selfish} & \textbf{Extinction} \\
+\midrule
+Baseline Setting         & 8 & 3 & 2 & \textbf{6} & 2 & 0 \\
+Resource Scarcity        & 4 & 2 & \textbf{3} & 0 & 1 & 1 \\
+Social Interaction Cost  & 4 & \textbf{2} & 1 & 0 & 1 & 1 \\
+Moral Type Observability & 4 & \textbf{4} & 0 & 2 & 0 & 0 \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+Figure~\ref{fig:replicates_grid} presents the population-ratio trajectories for all 20 replicate runs in a single panel array. Each row corresponds to one experimental setting (with Baseline spanning two rows for its 8 runs); each column is a distinct random seed. Stacked areas (left axis) show the percentage composition of each moral type over time; line plots with circle markers (right axis) show absolute agent counts. Panel subtitles report the run's outcome class derived from its step-80 state (e.g.\ ``Kin dom.'' for pure kin-focused dominance, ``Uni+Rec'' for universal--reciprocal coexistence, ``Extinction'' when no agents survive). The star ($\star$) annotations mark the runs that appear in the main-paper figure.
+
+\begin{figure*}[htbp]
+    \centering
+    \includegraphics[width=\linewidth]{appendix_figures/replicates_5x4_grid.pdf}
+    \caption{Population dynamics across all 20 replicate runs. Each row represents one experimental setting (Baseline spans two rows, runs 1--4 and 5--8). Stacked areas show agent-type percentage composition (left axis); lines with circle markers show absolute agent counts (right axis). Panel subtitles classify each run's outcome by step-80 surviving types. Stars ($\star$) indicate runs featured in the main-paper figure.}
+    \label{fig:replicates_grid}
+\end{figure*}
+
+\subsection{Mechanistic Case Studies: Six Factors Governing the Emergence of Morality}
+\label{sec:case_studies}
+
+Rather than treating each experimental condition as an isolated observation, we identify six underlying mechanisms that together determine which moral phenotypes stabilise across the evolutionary landscape. These mechanisms are not encoded directly in any configuration parameter; they emerge from the interaction between LLM-driven agent reasoning and the fixed game mechanics (reproduction cost, lifespan ceiling, prey-hunt coalition size, HP accounting). The central observation is that \textbf{moral phenotypes do not win or lose on an absolute axis --- they are ranked by the severity of their characteristic failure modes}.
+
+\subsubsection{Factor 1: Information Visibility Enables Preemptive Exclusion of Defectors}
+
+\textbf{Background.} The Baseline Setting sets \texttt{show\_other\_agent\_type = true}, allowing every agent to read the moral-type label of its peers at a glance. The Moral Type Observability setting inverts this to \texttt{false}, rendering types unobservable --- labels can no longer be used as a direct signal for coalition formation.
+
+\textbf{Mechanism.} Visibility transforms moral typology from a latent property into a \textbf{triggerable signal for preemptive coordination}. Reciprocal and Universal agents, encoded to value cooperative trust, use the visibility channel to identify selfish threats \emph{before those threats have reproduced}, executing a form of group-level risk management.
+
+\textbf{Case study (Resource Scarcity setting).} At \textbf{step 1}, \texttt{agent\_4} (reciprocal type) spontaneously broadcasts a coalition directive not scripted anywhere in its prompt:
+\begin{quote}
+``agent\_7, agent\_8 are selfish --- they are threats to us. We should coordinate to eliminate them after we build up HP.''
+\end{quote}
+This proposal was generated entirely through LLM inference from the combination of (a) observed moral tags, (b) scarcity-induced pressure, and (c) the reciprocal agent's prompt ethos. The coalition then acts on the plan:
+\begin{itemize}
+    \item \textbf{Step 10}: \texttt{agent\_5} (kin, initially neutral) joins the execution phase and delivers the killing blow to \texttt{agent\_8} (\texttt{death\_reason: killed\_by\_fight}).
+    \item \textbf{Step 15}: \texttt{agent\_4} and \texttt{agent\_5} coordinate to eliminate the weakened \texttt{agent\_7}.
+\end{itemize}
+
+\textbf{Outcome.} Both selfish agents die before producing a single offspring. Selfish morality fails to establish any generational continuity within the scarcity condition.
+
+\textbf{Consequence.} Rendering tags invisible (Moral Type Observability setting) delays this outcome by approximately 30 steps: founders \texttt{agent\_7}, \texttt{agent\_8} successfully infiltrate communal structures and reproduce. However, as Factor 6 below explains, the delay is temporary --- \textbf{visibility changes the timing of moral selection, not its eventual outcome}.
+
+\subsubsection{Factor 2: The Reproductive Cost / Neonate HP Gap Is a Lineage-Level Selection Filter}
+
+\textbf{Background.} Reproduction imposes a fixed 10 HP cost on the parent (\texttt{reproduction.hp\_cost = 10}), while offspring are instantiated at only 2--3 HP (\texttt{offspring\_initial\_hp}). This produces a ``survival gap'' that a freshly born agent cannot cross autonomously --- external HP transfers (typically from the parent) are required until the offspring becomes self-sufficient.
+
+\textbf{Mechanism.} Each moral phenotype approaches this gap with a different tool:
+\begin{itemize}
+    \item \textbf{Kin-focused}: end-of-life HP allocation exclusively to direct progeny.
+    \item \textbf{Reciprocal}: cross-lineage HP allocation contingent on reciprocity contracts.
+    \item \textbf{Universal}: low-threshold allocation to any nearby agent.
+    \item \textbf{Selfish}: reproduction without allocation, requiring robbery to replenish.
+\end{itemize}
+The performance of each strategy depends critically on whether the broader environment supports the required HP flow.
+
+\textbf{Case study (Social Interaction Cost setting --- kin-lineage collapse).}
+\begin{itemize}
+    \item \textbf{Step 10}: \texttt{agent\_5} (kin) reproduces, HP drops from 15 $\to$ 5; offspring \texttt{agent\_5\_1} born at HP=2.
+    \item \textbf{Step 11}: \texttt{agent\_5} allocates 2 HP to the offspring, its own HP falls to 3.
+    \item \textbf{Step 12--16}: \texttt{agent\_5} collects insufficient plants to recover, starves to HP=0 (\texttt{natural\_causes}). \texttt{agent\_5\_1}, still only at HP=3 and age 4, receives no further allocation and dies shortly after.
+\end{itemize}
+No combat, no external aggression --- the entire kin lineage collapses from its own reproduction arithmetic.
+
+\textbf{Consequence.} Kin morality's defining virtue --- restricted, lossless HP allocation within the family --- becomes a single-point-of-failure when the broader social environment cannot buffer the parent during allocation. \textbf{The same mechanism that lets kin dominate the Baseline condition is the mechanism that kills them under high communication cost.} Moral strategy is thus not a fixed ordering of strength; it is a conditional function whose outputs invert depending on structural support.
+
+\subsubsection{Factor 3: Communication Bandwidth Is a Structural Prerequisite for Cooperation}
+
+\textbf{Background.} Prey in this environment require four coordinated hunters and counter-attack solo attempts (up to lethal damage). Forming a 4-hunter coalition requires a negotiation cycle: proposal $\to$ commitment $\to$ verification $\to$ execution split. The Baseline Setting allows 2 communication rounds per production cycle; the Social Interaction Cost setting reduces this to 1.
+
+\textbf{Mechanism.} One communication round is structurally insufficient to complete a 4-agent negotiation. Without ratified commitments, multiple agents act under inconsistent expectations of the coalition's outcome.
+
+\textbf{Case study (Social Interaction Cost setting --- step 2 coordination failure).}
+\begin{itemize}
+    \item \textbf{Step 1}: \texttt{agent\_2} (universal) broadcasts ``let's 4-hunt together.'' The coalition cannot be validated within the single communication round.
+    \item \textbf{Step 2}: All four prospective hunters independently attack the same prey, unaware of the parallel attempts. The prey is killed by one of the four but the others' actions are processed simultaneously; the stale-action guard converts three of the four attacks into HP penalties. \textbf{No one receives the reward.}
+\end{itemize}
+Following this failure, agents default to solitary strategies: plant collection (low-yield) or solo hunting (high-risk). Selfish agents, already predisposed to opportunism, pivot to robbery --- which itself induces the death spirals analysed in Factor 2.
+
+\textbf{Consequence.} Communication bandwidth is not a performance optimisation; it is \textbf{the physical substrate on which large-group cooperation runs}. Removing it does not reduce cooperation's efficacy --- it eliminates cooperation as a viable strategy at that coordination scale. Universal and Reciprocal morality survive only by collapsing to a tight 2-agent dyad (\texttt{agent\_1} and its descendants), which requires only pairwise coordination --- a bandwidth-feasible subset of their original strategy.
+
+\subsubsection{Factor 4: Selfish Morality Exhibits LLM-Emergent Intra-Type Aggression}
+
+\textbf{Background.} The \texttt{reproductive\_selfish} prompt emphasises personal survival and reproductive success; it does not mandate aggression toward other selfish agents.
+
+\textbf{Mechanism.} Yet under this prompt, selfish agents \emph{read} same-type peers as ``reproductive competitors'' --- the most dangerous class of opponent --- rather than as natural allies. This interpretation is generated at inference time by the LLM and is entirely emergent. It constitutes a kind of reading-frame effect: different moral prompts produce different \emph{categorisations} of the social world, and the selfish categorisation contains no ``teammate'' class.
+
+\textbf{Case study (Resource Scarcity setting --- \texttt{agent\_7}'s internal reasoning at step 2).}
+\begin{quote}
+``agent\_8 is my same type. It will compete with me for reproductive niche. Must eliminate agent\_8 first --- same type, most dangerous.''
+\end{quote}
+\begin{itemize}
+    \item \textbf{Step 2}: \texttt{agent\_7} attacks \texttt{agent\_8} unprovoked, dealing 6 HP damage (\texttt{agent\_8}: 20 $\to$ 14).
+    \item \textbf{Steps 4--9}: Continued attacks by \texttt{agent\_7} each social round. \texttt{agent\_8} never retaliates; it spends its own turns attempting to negotiate cooperative hunts with the moral coalition --- which ignore it.
+    \item \textbf{Step 10}: The coalition opportunistically finishes the weakened \texttt{agent\_8}; \texttt{agent\_5} (kin) lands the killing blow.
+    \item \textbf{Step 15}: The coalition eliminates the now-isolated \texttt{agent\_7}.
+\end{itemize}
+
+\textbf{Consequence.} The selfish population is structurally \textbf{outnumbered in every confrontation}. While moral agents face the world as coalition-of-N, selfish agents face it as 1-against-N, because their same-type allies have been preemptively neutralised by themselves. \textbf{Selfish morality does not fail because of the environment; it fails because its reading frame excludes the concept of a teammate.}
+
+\subsubsection{Factor 5: Kin Selection as Algorithmic Hamilton's Rule}
+
+\textbf{Background.} Individual lifespan is capped by \texttt{max\_age = 20}. With initial age 10, any founder agent dies within approximately 10 simulation steps of its first appearance. No single individual can persist across the 80-step experimental window; continuity is achievable only through multi-generational inheritance.
+
+\textbf{Mechanism.} Kin morality's end-of-life allocation rule converts the individual lifespan ceiling into a \textbf{lineage-level continuous resource flow}. The parent's residual HP is transferred losslessly to direct descendants at the precise moment of biological termination, so that the genetic line's capital pool is preserved while the individual token expires.
+
+\textbf{Case study (Baseline Setting --- the \texttt{agent\_5} lineage).}
+\begin{itemize}
+    \item \textbf{Steps 1--19}: \texttt{agent\_5} (kin) accumulates resources through low-communication plant collection; no reproduction yet.
+    \item \textbf{Steps 30--33}: As \texttt{agent\_5} approaches \texttt{max\_age}, it executes a terminal HP allocation exclusively to \texttt{agent\_5\_1} and allows itself to expire.
+    \item \textbf{Steps 34 onward}: The generational handoff repeats at each lineage termination. By step 150, the line has progressed to \texttt{agent\_5\_1\_1\_1\_1}. At simulation conclusion, the lineage encompasses multiple simultaneously alive descendants across generational cohorts, with the broader population dominated by variants of this bloodline.
+\end{itemize}
+
+\textbf{Consequence.} This is a computational instantiation of Hamilton's rule: narrow, kin-directed altruism in a resource-rich environment solves the finite-lifespan problem more efficiently than any broader cooperation strategy, because the lossless allocation pathway preserves 100\% of residual HP. Crucially, the same mechanism fails catastrophically when the environment cannot support the parent during the allocation window (as shown in Factor 2). \textbf{The strength and the weakness of kin morality are produced by the identical rule.}
+
+\subsubsection{Factor 6: Behaviour Builds Identity, Even When Labels Are Hidden}
+
+\textbf{Background.} Under the Moral Type Observability setting, moral tags are invisible. \emph{A priori}, selfish agents should be indistinguishable from cooperators and should therefore escape the preemptive coalition formation of Factor 1.
+
+\textbf{Mechanism.} However, behavioural patterns remain observable --- \emph{what an agent does} is public, even if \emph{what it is} is hidden. Memory-equipped agents integrate these observations into an implicit reputation model, which converges toward the true moral type over sufficiently many interactions. The social system, in effect, performs an \emph{a posteriori} classification that recovers the information the configuration removed.
+
+\textbf{Case study (Moral Type Observability setting --- delayed selfish-lineage extinction).}
+\begin{itemize}
+    \item \textbf{Steps 1--30}: \texttt{agent\_7}, \texttt{agent\_8} (selfish) successfully masquerade as cooperators. They accept communal invitations but never allocate; they opportunistically rob low-HP peers. These individual actions are logged but not yet aggregated into a reputation.
+    \item \textbf{Step $\sim$33}: \texttt{agent\_7}, \texttt{agent\_8} die of old age, having successfully reproduced. \texttt{agent\_7\_1} and \texttt{agent\_8\_1} inherit HP and carry on.
+    \item \textbf{Steps 40--55}: Other agents' communication memories accumulate behavioural evidence --- ``\texttt{agent\_7\_1}'s line has never been observed to allocate,'' ``the \texttt{agent\_8} lineage consistently abstains from collaborative contributions.'' Reputation converges across the broader community.
+    \item \textbf{Steps 55--80}: \texttt{agent\_7\_1}, \texttt{agent\_8\_1} are systematically excluded from hunting coalitions. Without access to prey, they starve within 10--15 steps.
+\end{itemize}
+
+\textbf{Consequence.} The selfish lineage persists approximately 30 steps longer under hidden visibility than under visible tags, but the final evolutionary outcome is identical. \textbf{Morality in this system is not a label; it is a distillation of behaviour under sufficient observation.} Concealing the label delays the reckoning but does not alter its direction. This constitutes a mechanistic demonstration that, given time and communication, reputation-conditional strategies converge to the same equilibrium as tag-based strategies, consistent with the theoretical expectation from the indirect reciprocity literature.
+
+\subsubsection{Unifying Principle: Morality as Failure-Mode Minimisation}
+
+Across the six factors, a unifying principle emerges: \textbf{moral phenotypes do not compete on a single absolute axis of performance. Instead, each phenotype is characterised by the severity of its failure mode, and the environment selects the phenotype whose failure mode the environment least expresses.}
+\begin{itemize}
+    \item \textbf{Selfish}: characteristic failure mode is \emph{social catastrophe} --- preemptive exclusion or retrospective reputation-based purge. Failure cost is terminal for the entire lineage; recoverability is zero.
+    \item \textbf{Kin-focused}: characteristic failure mode is \emph{generational handoff failure} --- a single weak parent--child transfer can collapse the lineage. Failure cost is high but recoverable when the broader environment provides a buffer.
+    \item \textbf{Reciprocal}: characteristic failure mode is \emph{negotiation breakdown} --- collapses when communication bandwidth is insufficient to ratify contracts. Failure cost is conditional on environmental bandwidth.
+    \item \textbf{Universal}: characteristic failure mode is \emph{free-rider exploitation} --- absorbs some cost from unreciprocated allocation. Failure cost is diffuse, distributed across the lifespan, and never structurally fatal.
+\end{itemize}
+
+The apparent ranking of moral types across the four experimental settings is therefore better understood as the environment's selective pressure on specific failure modes. The Baseline Setting permits kin allocation flow, so kin-focused morality dominates. The Resource Scarcity setting demands large-group coordination under tight resource constraints, so reciprocal morality wins. The Social Interaction Cost setting breaks contract negotiation, so reciprocal fails and universal (with low-friction allocation) dominates by default. The Moral Type Observability setting delays but does not prevent reputation-based selection, so the outcome converges to the Baseline ranking after an extended latency. This reframing --- morality as lineage-level failure-cost minimisation --- generalises the observation beyond any specific ablation, providing a unified explanatory axis along which novel environmental conditions (not yet tested) can be predicted rather than merely reported.
 
 \subsection{Validation of Agent Behavior-Morality Alignment}
 

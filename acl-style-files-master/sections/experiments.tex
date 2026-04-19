@@ -1,29 +1,40 @@
 
 We validate our framework across multiple LLM backbones. Unless otherwise specified, the primary simulation model is GPT-5-mini, with cross-model validation using the open-source Qwen-3.5 and Kimi-K2.5 (see Table~\ref{tab:cross_model}).
-\begin{figure}[t!]
+\begin{figure*}[t!]
     \centering
-    \begin{subfigure}[b]{\columnwidth}
-        \centering
-        \includegraphics[width=\linewidth]{figures/population_Major_baseline.pdf}
-        \caption{Scenario with major baseline setting}
-    \end{subfigure}
-    \begin{subfigure}[b]{\columnwidth}
-        \centering
-        \includegraphics[width=\linewidth]{figures/population_High_social_cost.pdf}
-        \caption{Scenario with high social interaction cost}
-    \end{subfigure}
-    \begin{subfigure}[b]{\columnwidth}
-        \centering
-        \includegraphics[width=\linewidth]{figures/population_Moral_invisiable.pdf}
-        \caption{Scenario with invisible moral type}
-    \end{subfigure}
-    \caption{Agent populations and ratios of moral types}
+    \includegraphics[width=\textwidth]{figures/population_grid_4panel.pdf}
+    \caption{Population dynamics across four experimental settings, each showing a representative run where the most frequently dominant moral type in that setting prevails. Each panel displays the proportion (stacked area) and count (line) of surviving moral types over 80 simulation steps. (A)~Baseline: kin-focused agents dominate, leveraging efficient intergenerational HP transfer within families. (B)~Resource Scarcity: reciprocal agents dominate through coordinated coalition hunting. (C)~High Social Interaction Cost: universal agents emerge as dominant, as their cooperation does not require multi-round negotiation. (D)~Moral Type Unobservable: universal and kin agents coexist while reciprocal agents decline due to moral type misattribution. Note that outcomes vary across runs; aggregate win counts over 20 replicate runs are reported in Table~\ref{tab:replicate_outcomes_main}.}
     \label{fig:population}
-\end{figure}
+\end{figure*}
 
-\paragraph{Moral Evolution} 
-We run several exemplary experiments to demonstrate how moral dispositions interplay with various settings.
-Our baseline configuration employs a non-scarce resource, low social interaction cost, and direct moral type observability to provide a relatively easy mode of survival. In another two experiments, we change the setting to \textbf{High Social Interaction Cost} and \textbf{Invisible Moral Type}, respectively. Each simulation is initialized with 8 agents, where 2 agents per moral type. The progression of the population ratio of each moral type from a representative run for each configuration is shown in Fig.~\ref{fig:population}. For the baseline configuration, we verify robustness by conducting 8 independent runs on three different LLM backbones; the cross-model statistics are reported in Table~\ref{tab:cross_model}. In the baseline setting, kin-focused moral agents ultimately dominate the population. However, when interaction costs are high—making collaboration more difficult—selfish agents take over. In a third condition, where agents cannot directly observe each other’s moral types and must infer them through interaction, both kin-focused and universal moral agents tend to survive until the end. A closer analysis of the underlying dynamics reveals that kin-focused agents outperform others in the baseline setting because they avoid conflicts over resource distribution and rapidly produce offspring early in the simulation. In the high-interaction-cost condition, more moral agents spend excessive time negotiating collaboration terms rather than engaging in productive activities like hunting or gathering, allowing selfish agents to exploit this delay and gain an advantage. In the setting with hidden moral types, kin-focused agents continue to benefit from tight in-group coordination. Meanwhile, universal moral agents also persist—not because of superior collaboration efficiency, but because their strict rejection of all violence, including justified revenge, minimizes the risk of misinterpretation. In contrast, reciprocal moral agents, who selectively punish defectors, are often mistaken for selfish individuals and therefore suffer from social exclusion or retaliation. Additional experiment (\textbf{Resource Scarcity}) and detailed results can be found in the Appendix.
+\begin{table}[t!]
+\centering
+\small
+\caption{Run-level win counts across settings. A moral type ``wins'' if it survives at step~80; coexistence credits every surviving type.}
+\label{tab:replicate_outcomes_main}
+\begin{tabular}{l c c c c c}
+\toprule
+\textbf{Setting} & \textbf{N} & \textbf{Uni.} & \textbf{Rec.} & \textbf{Kin} & \textbf{Sel.} \\
+\midrule
+Baseline         & 8 & 3 & 2 & \textbf{6} & 2 \\
+Resource Scarc.  & 4 & 2 & \textbf{3} & 0 & 1 \\
+Social Int.\ Cost & 4 & \textbf{2} & 1 & 0 & 1 \\
+Moral Observ.    & 4 & \textbf{4} & 0 & 2 & 0 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Moral Evolution}
+We run several exemplary experiments to demonstrate how moral dispositions interplay with various settings. To characterise stochastic variability, we execute the Baseline setting $N{=}8$ times and each ablation setting $N{=}4$ times (20 runs total) using distinct random seeds. Table~\ref{tab:replicate_outcomes_main} summarises the run-level outcomes; population trajectories for all runs appear in the supplement (\S\ref{sec:replicates}).
+Each simulation is initialized with 8 agents (2 per moral type). Representative population trajectories for four experimental settings are shown in Fig.~\ref{fig:population}; cross-model statistics for the baseline are reported in Table~\ref{tab:cross_model}.
+
+\textbf{Baseline:} With abundant resources, low social cost, and observable moral types, kin-focused agents dominate (6/8 runs). They benefit from a compact cooperation unit---the family---that avoids the overhead of broader alliances while rapidly producing offspring.
+
+\textbf{Resource Scarcity:} When resources are scarce, reciprocal agents dominate (3/4 runs) through coordinated coalition hunting. Kin-focused agents fail because reproduction costs 10 HP while offspring are born at only 2--3 HP, creating a recovery gap that parents cannot bridge under scarcity---the same allocation mechanism that powers kin dominance in the Baseline becomes a lineage-level death sentence when resources are tight.
+
+\textbf{High Social Interaction Cost:} With only 1 social round before production, universal agents emerge as the most viable type (2/4 runs). Their cooperation does not depend on negotiating explicit reciprocal contracts: they default to unconditional contribution even when there is no room to ratify exchanges. Reciprocal agents cannot set up the trust-verification cycle their strategy requires. Selfish agents collapse early, and kin-focused lineages cannot sustain themselves without cross-kin alliances. One run ends in reciprocal/selfish coexistence and one in full extinction---indicating that unconditional cooperation is the most reliable, though not the only, viable strategy under low-bandwidth conditions.
+
+\textbf{Moral Type Unobservable:} When agents cannot directly observe moral types, kin and universal agents survive while others decline (universal survives in all 4 runs). Reciprocal agents fail because their cooperative behaviours are misinterpreted as selfish, triggering exclusion from coalitions. This demonstrates that the ability to signal one’s moral type is critical for conditional cooperation strategies. Detailed per-setting results and mechanistic case studies are provided in the Appendix (\S\ref{sec:case_studies}).
 
 \begin{figure}[t!]
     \centering
@@ -44,16 +55,16 @@ Our baseline configuration employs a non-scarce resource, low social interaction
 \begin{table}[t]
 \centering
 \small
-\caption{Cross-model robustness of the baseline simulation over 8 independent runs per model. CM Diag.\ Acc.\ = confusion-matrix diagonal accuracy.}
-\begin{tabular}{@{}lcccc@{}}
+\begin{tabular}{@{}lccc@{}}
 \toprule
-\textbf{Sim.\ Model} & \textbf{CM Diag.\ Acc.} & \textbf{Dom.\ Type} & \textbf{Dom.\ Step} & \textbf{Final Pop.} \\
+\textbf{Sim.\ Model} & \textbf{CM Diag.\ Acc.} & \textbf{Dom.\ Type} & \textbf{Final Pop.} \\
 \midrule
-GPT-5-mini & $0.89 \pm 0.03$ & Kin (6/8) & $41.8 \pm 6.5$ & $12.0 \pm 2.0$ \\
-Qwen-3.5 & $0.86 \pm 0.03$ & Kin (7/8) & $43.5 \pm 5.6$ & $11.6 \pm 1.7$ \\
-Kimi-K2.5 & $0.87 \pm 0.03$ & Kin (5/8) & $44.0 \pm 6.7$ & $12.1 \pm 1.8$ \\
+GPT-5-mini & $0.89 \pm 0.03$ & Kin (6/8) & $12.0 \pm 2.0$ \\
+Qwen-3.5 & $0.86 \pm 0.03$ & Kin (7/8) & $11.6 \pm 1.7$ \\
+Kimi-K2.5 & $0.87 \pm 0.03$ & Kin (5/8) & $12.1 \pm 1.8$ \\
 \bottomrule
 \end{tabular}
+\caption{Cross-model robustness of the baseline simulation over 8 independent runs per model. CM Diag.\ Acc.\ = confusion-matrix diagonal accuracy.}
 \label{tab:cross_model}
 \end{table}
 
@@ -111,7 +122,7 @@ As shown in Fig.~\ref{fig:allocate_kinaltru}, parents generally transfer surplus
 \end{figure}
 
 \paragraph{Importance of Cognitive Constraints}
-Our simulations highlight the critical role of cognitive constraints in the evolution of morality, often not stressed upon by previous moral evolution theories. When communication and cooperation are costly, agents with stronger moral dispositions consistently lose their competitive edge, allowing selfish agents to dominate, as shown in Fig.~\ref{fig:population}. This pattern exemplifies bounded rationality~\citep{simon1991bounded}, where decision-making is limited by cognitive and temporal constraints. The results also lend support to the Morality-as-Cooperation (MAC) theory~\citep{Curry2019MAC}. It posits that morality evolved as a mechanism to facilitate cooperation, implying that if cooperation ceases to confer benefits, morality would likewise lose its utility. Moreover, we observe that many conflicts stem from simple misunderstandings due to limited behavioral cues—an outcome consistent with foundational theories in communication, which emphasize the inherent limits of information transmission~\citep{shannon1948mathematical, deutsch1973resolution}. Universal moral type agents, while risking exploitation, gain an advantage by avoiding being misunderstood and targeted. This connects to theories like reputation and costly signaling~\citep{alt1988reputation, gintis2001costly, nowak2005evolution}
+Our simulations highlight the critical role of cognitive constraints in moral evolution---a factor rarely emphasised by prior theories. When communication bandwidth is severely limited, conditional cooperation strategies (reciprocal morality) collapse because they cannot complete the negotiation cycles their strategy requires; under these conditions, universal morality---which does not depend on explicit contracts---emerges as the most viable strategy, while selfish agents still decline due to social exclusion (Fig.~\ref{fig:population}, Table~\ref{tab:replicate_outcomes_main}). This pattern exemplifies bounded rationality~\citep{simon1991bounded} and supports the Morality-as-Cooperation theory~\citep{Curry2019MAC}, which posits that morality evolved to facilitate cooperation. We further observe that many conflicts stem from misunderstandings due to limited behavioural cues, consistent with information transmission limits~\citep{shannon1948mathematical, deutsch1973resolution}. Universal agents, while risking exploitation, gain an advantage by avoiding misinterpretation, connecting to theories of reputation and costly signalling~\citep{alt1988reputation, gintis2001costly, nowak2005evolution}.
 
 
 \paragraph{Connections to Established Theories}
@@ -119,8 +130,8 @@ Our simulations highlight the critical role of cognitive constraints in the evol
 The results capture phenomena aligning with diverse established theories, validating our framework’s ability to produce meaningful and insightful results.
 
 
-\textit{Altruism Promotes Group-level Survival:} 
-Consistent with foundational theories of social evolution~\citep{hamilton1964genetical,trivers1971evolution,boyd1987evolution,nowak1998dynamics}, our simulations demonstrate that altruistic behaviors (non-selfish agents) generally enhance group-level survival (Fig.~\ref{fig:population}). But it may depend on the cost of collaboration and would not help when the cost is too high to defeat the purpose of collaboration. 
+\textit{Altruism Promotes Group-level Survival:}
+Consistent with foundational theories of social evolution~\citep{hamilton1964genetical,trivers1971evolution,boyd1987evolution,nowak1998dynamics}, our simulations demonstrate that moral agents generally enhance group-level survival across all settings (Fig.~\ref{fig:population}, Table~\ref{tab:replicate_outcomes_main}), while selfish agents are strongly disfavoured. The specific form of morality that prevails depends on environmental conditions---broader cooperation becomes more advantageous as pressures intensify.
 
 
 \textit{Moral Evolution in Prehistoric Societies:} 
