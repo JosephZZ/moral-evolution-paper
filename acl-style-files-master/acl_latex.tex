@@ -42,6 +42,7 @@
 \usepackage{amssymb}
 \usepackage{subcaption}
 \usepackage{marvosym}
+\usepackage{fontawesome}
 
 \newcommand{\cmark}{\ding{51}}  % ✓
 \newcommand{\xmark}{\ding{55}}  % ✗
@@ -94,6 +95,9 @@ $^{3}$Beijing Normal University
 \\
 \textsuperscript{*}Equal contribution.\quad
 \textsuperscript{\Letter}Corresponding authors: josephziheng@ucla.edu, fangweizhong@bnu.edu.cn
+\\[0.5em]
+\href{https://MoralAgentSim.github.io}{\faGlobe~Project Page} \quad
+\href{https://github.com/MoralAgentSim/Simulation-Engine}{\faGithub~Code}
 }
 
 %\author{
@@ -137,10 +141,7 @@ $^{3}$Beijing Normal University
 \begin{document}
 \maketitle
 \begin{abstract}
-The evolution of morality presents a puzzle: natural selection should favor self-interest, yet humans developed moral systems promoting altruism. We address this question by introducing a novel Large Language Model (LLM)-based agent simulation framework modeling prehistoric hunter-gatherer societies.
-This platform is designed to probe diverse questions in social evolution, from survival advantages to inter-group dynamics.
-To investigate moral evolution, we designed agents with varying moral dispositions based on the Expanding Circle Theory \citep{singer1981expanding}. We evaluated their evolutionary success across a series of simulations and analyzed their decision-making in specially designed moral dilemmas. These experiments reveal how an agent's moral framework, in combination with its cognitive constraints, directly shapes its behavior and determines its evolutionary outcome. We validate the robustness of our findings through cross-model experiments with both proprietary and open-source LLMs, architecture ablations, and prompt sensitivity analyses. Crucially, the emergent patterns echo seminal theories from related domains of social science, providing external validation for the simulations.
-This work establishes LLM-based simulation as a powerful new paradigm to complement traditional research in evolutionary biology and anthropology, opening new avenues for investigating the complexities of moral and social evolution.
+The evolution of morality presents a puzzle: natural selection should favor self-interest, yet humans developed moral systems promoting altruism. Traditional approaches must abstract away cognitive processes, leaving open how cognitive factors shape moral evolution. We introduce an LLM-based agent simulation framework that brings cognitive realism to this question: agents with varying moral dispositions perceive, remember, reason, and decide in a simulated prehistoric hunter-gatherer society. This enables us to manipulate factors that traditional models cannot represent---such as moral type observability and communication bandwidth---and to discover emergent cognitive mechanisms from agent interactions. Across 20 runs spanning four settings, we find that cooperation and mutual help are the central drivers of survival, with universal and reciprocal morality exhibiting the most stable evolutionary outcomes while selfishness is strongly disfavoured. We also observe two central mechanisms that emerge from cognition, including a \emph{cost of moral judgment} and a \emph{self-purging effect} among selfish agents. We validate robustness across multiple LLM backbones, architecture ablations, and prompt sensitivity analyses.
 \end{abstract}
 
 \section{Introduction}
@@ -158,6 +159,72 @@ This work establishes LLM-based simulation as a powerful new paradigm to complem
 \section{\envframe Framework}
 \label{sec:framework}
 \input{sections/framework}
+
+\begin{figure}[t!]
+    \centering
+    \includegraphics[width=0.9\columnwidth]{figures/agent_hp_with_action.pdf}
+    \vspace{0.3em}
+    \includegraphics[width=0.9\columnwidth]{figures/multi_run_confusion_matrix.pdf}
+    \caption{Validation results of the baseline simulation. Upper: HP trajectories of selected agents with action markers. Lower: confusion matrix of moral type inference averaged over 8 runs.}
+    \label{fig:validation}
+\end{figure}
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{@{}lccc@{}}
+\toprule
+\textbf{Sim.\ Model} & \textbf{CM Diag.\ Acc.} & \textbf{Dom.\ Type} & \textbf{Final Pop.} \\
+\midrule
+GPT-5-mini & $0.89 \pm 0.03$ & Kin (6/8) & $12.0 \pm 2.0$ \\
+Qwen-3.5 & $0.86 \pm 0.03$ & Kin (7/8) & $11.6 \pm 1.7$ \\
+Kimi-K2.5 & $0.87 \pm 0.03$ & Kin (5/8) & $12.1 \pm 1.8$ \\
+\bottomrule
+\end{tabular}
+\caption{Cross-model robustness of the baseline simulation over 8 independent runs per model. CM Diag.\ Acc.\ = confusion-matrix diagonal accuracy.}
+\label{tab:cross_model}
+\end{table}
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{@{}lcc@{}}
+\toprule
+\textbf{Condition} & \textbf{CM Diag.\ Acc.} & \textbf{$\Delta$} \\
+\midrule
+Full Architecture & $0.89 \pm 0.03$ & --- \\
+\midrule
+\multicolumn{3}{@{}l}{\textit{Architectural Ablation}} \\
+\quad w/o Memory & $0.78 \pm 0.04$ & $-0.11$ \\
+\quad w/o Plan & $0.82 \pm 0.04$ & $-0.07$ \\
+\quad w/o Reflection & $0.84 \pm 0.03$ & $-0.05$ \\
+\quad ReAct Baseline & $0.67 \pm 0.06$ & $-0.22$ \\
+\midrule
+\multicolumn{3}{@{}l}{\textit{Prompt Sensitivity}} \\
+\quad Variant A (lexical rewrite) & $0.87 \pm 0.03$ & $-0.02$ \\
+\quad Variant B (structural rewrite) & $0.86 \pm 0.04$ & $-0.03$ \\
+\bottomrule
+\end{tabular}
+\caption{Architecture ablation and prompt sensitivity analysis. All experiments use the baseline configuration with GPT-5-mini.}
+\label{tab:ablation}
+\end{table}
+
+\begin{table}[t!]
+\centering
+\small
+\begin{tabular}{l c c c c c}
+\toprule
+\textbf{Setting} & \textbf{N} & \textbf{Uni.} & \textbf{Rec.} & \textbf{Kin} & \textbf{Sel.} \\
+\midrule
+Baseline              & 8 & 4 & 2 & \textbf{6} & 2 \\
+Scarce Resource       & 4 & 2 & \textbf{3} & 0 & 1 \\
+High Social Cost      & 4 & 2 & \textbf{3} & 0 & 1 \\
+Moral Type Invisible  & 4 & \textbf{4} & 2 & 2 & 0 \\
+\bottomrule
+\end{tabular}
+\caption{Run-level survival counts. A moral type earns one point in a run if it has a nonzero population at step~80; coexistence credits every surviving type.}
+\label{tab:replicate_outcomes_main}
+\end{table}
 
 \section{Experiments}
 \label{sec:experiments}
@@ -177,8 +244,6 @@ First, the framework currently relies on general-purpose LLMs for key reasoning 
 Second, the current model does not explicitly implement sexual selection, despite its central role in evolutionary dynamics. As a consequence, the framework cannot capture phenomena such as mate choice, mating competition, or selection pressures arising from reproductive strategies. Incorporating these processes would require additional, carefully specified mechanisms and is therefore left to future work.
 
 Third, our environment is intentionally limited to a hunter-gatherer setting. Important components of more complex societies—such as tool innovation and accumulation, exchange/market dynamics, institutional governance, and technologically mediated coordination—are not modeled. While these additions could increase ecological realism, they may also introduce additional confounds and complicate experimental control; thus, conclusions drawn from the present experiments should be interpreted as pertaining to simplified social-ecological conditions.
-
-Finally, although the framework is designed to support modular moral specifications, the current study operationalizes only a restricted subset of moral theories. Given the diversity and non-equivalence of normative frameworks, our findings may not directly generalize to alternative moral formalisms that emphasize different constructs or decision criteria. Future work should extend the implemented moral modules in a targeted manner, guided by theoretical relevance and community demand.
 
 \section*{Ethical considerations}
 Our project is, at its core, a simulation study of ethics itself. As such, it does not raise the typical ethical concerns associated with methodological research that might be misused.
