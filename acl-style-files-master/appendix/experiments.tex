@@ -68,11 +68,11 @@ Reflection round & Enabled & Whether two-stage prompting is used. \\
 
 
 \subsection{Additional Results of Evolutionary Games}
-Based on the main baseline experiment mentioned in the main paper, other experiments change only their appropriate parameters: for resource scarcity, we change the resource abundance to 1x; for high communication cost, we change the social interaction steps to 1; for moral type observability, we change the visibility of other agents' moral types to be invisible. And we also tested scenarios where only one type of morality exists in the simulation.
+Based on the Baseline experiment mentioned in the main paper, other experiments change only their appropriate parameters: for resource scarcity, we change the resource abundance to 1x; for high communication cost, we change the social interaction steps to 1; for moral type observability, we change the visibility of other agents' moral types to be invisible. And we also tested scenarios where only one type of morality exists in the simulation.
 In this section, we present the simulation results from several perspectives.
 
 \subsubsection{Population and selected agents' HP curve}
-Besides the main baseline experiments, we conducted simulations with various environment settings.
+Besides the Baseline experiments, we conducted simulations with various environment settings.
 This section visualizes the dynamics of agent populations and their proportion over time, as well as selected agents' health points (HP) across each simulation setting. 
 For each simulation scenario, the figures include:
 1) Population Trends: Line plots showing the ratio and count of agent types (e.g., survival, extinction) over time. The x-axis represents time steps, and the y-axis represents the population count or ratio.
@@ -105,106 +105,6 @@ For each simulation scenario, the figures include:
 \end{figure}
 
 
-\textbf{Single Morality Scenarios}
-
-Besides the simulations with various environment settings, we also conducted four experiments, where each experiment only had one single type of morality, with the baseline environment settings.
-
-From the agent dynamics shown in Figure~\ref{fig:universal_pop},~\ref{fig:reciprocal_pop},~\ref{fig:kin_pop}, and~\ref{fig:selfish_pop}, agents have a high-reproduction period no matter morality types. After the first boom, universal moral agents and kin-focused agents maintain a relatively stable population, indicating that the resources are allocated fairly in general, but not high enough to reproduce. The reciprocal agents experience several oscillations, which may be because there are always agents gaining lots of resources when available to reproduce. Selfish agents are almost extinct after the boom, since they do not tend to collaborate to hunt when the plants are not available.
-\begin{figure}[H]
-    \centering
-    \begin{subfigure}[t]{0.4\textwidth}
-        \centering
-        \includegraphics[width=\linewidth]{appendix_figures/populations/population_single_type_Universal_moral.pdf}
-        \caption{Agent total count over time}
-    \end{subfigure}
-    \hfill
-    
-    \begin{subfigure}[t]{0.48\textwidth}
-        \centering
-        \includegraphics[width=\linewidth]{appendix_figures/HP/hp_change_Universal_moral_agent_1.pdf}
-        \caption{HP and causes of an agent from a survival type}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}[t]{0.48\textwidth}
-        \centering
-        \includegraphics[width=\linewidth]{appendix_figures/HP/hp_change_Universal_moral_agent_3.pdf}
-        \caption{HP and causes of an agent from an extinct type}
-    \end{subfigure}
-    \caption{Agent type ratio and count, and two example agent HP over time (Case:  universal type}
-    \label{fig:universal_pop}
-\end{figure}
-
-\begin{figure}[H]
-    \centering
-    \begin{subfigure}[t]{0.4\textwidth}
-        \centering
-        \includegraphics[width=\linewidth]{appendix_figures/populations/population_single_type_Reciprocal_moral.pdf}
-        \caption{Agent total count over time}
-    \end{subfigure}
-    \hfill
-    
-    \begin{subfigure}[t]{0.48\textwidth}
-        \centering
-        \includegraphics[width=\linewidth]{appendix_figures/HP/hp_change_Reciprocal_moral_agent_1.pdf}
-        \caption{HP and causes of an agent from a survival type}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}[t]{0.48\textwidth}
-        \centering
-        \includegraphics[width=\linewidth]{appendix_figures/HP/hp_change_Reciprocal_moral_agent_3.pdf}
-        \caption{HP and causes of an agent from an extinct type}
-    \end{subfigure}
-    \caption{Agent type ratio and count, and two example agent HP over time (Case:  reciprocal type)}
-    \label{fig:reciprocal_pop}
-\end{figure}
-
-\begin{figure}[H]
-    \centering
-    \begin{subfigure}[t]{0.4\textwidth}
-        \centering
-        \includegraphics[width=\linewidth]{appendix_figures/populations/population_single_type_Kin-focused_moral.pdf}
-        \caption{Agent total count over time}
-    \end{subfigure}
-    \hfill
-    
-    \begin{subfigure}[t]{0.48\textwidth}
-        \centering
-        \includegraphics[width=\linewidth]{appendix_figures/HP/hp_change_Kin-focused_moral_agent_1.pdf}
-        \caption{HP and causes of an agent from a survival type}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}[t]{0.48\textwidth}
-        \centering
-        \includegraphics[width=\linewidth]{appendix_figures/HP/hp_change_Kin-focused_moral_agent_3.pdf}
-        \caption{HP and causes of an agent from an extinct type}
-    \end{subfigure}
-    \caption{Agent type ratio and count, and two example agent HP over time (Case:  kin type)}
-    \label{fig:kin_pop}
-\end{figure}
-
-\begin{figure}[H]
-    \centering
-    \begin{subfigure}[t]{0.4\textwidth}
-        \centering
-        \includegraphics[width=\linewidth]{appendix_figures/populations/population_single_type_Selfish.pdf}
-        \caption{Agent total count over time}
-    \end{subfigure}
-    \hfill
-    
-    \begin{subfigure}[t]{0.48\textwidth}
-        \centering
-        \includegraphics[width=\linewidth]{appendix_figures/HP/hp_change_Selfish_agent_1.pdf}
-        \caption{HP and causes of an agent from a survival type}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}[t]{0.48\textwidth}
-        \centering
-        \includegraphics[width=\linewidth]{appendix_figures/HP/hp_change_Selfish_agent_3.pdf}
-        \caption{HP and causes of an agent from an extinct type}
-    \end{subfigure}
-    \caption{Agent type ratio and count, and two example agent HP over time (Case:  selfish type)}
-    \label{fig:selfish_pop}
-\end{figure}
 
 \subsubsection{Agents' lifespan}
 
@@ -283,8 +183,6 @@ This section examines the proportion of action types across test cases and agent
 From the figure, we could observe that:
 \begin{itemize}
     \item Only selfish agents have taken the ``rob" action, and they do not like ``communicate" and ``allocate"
-    \item ``Collect" actions are taken mostly when resources are abundant, no matter what morality is
-    \item When social cost is high, agents tend to ``reproduce" more than in other settings
 \end{itemize}
 
 
@@ -603,7 +501,7 @@ From all these figures, we could conclude that:
     \centering
         \includegraphics[width=\linewidth]{appendix_figures/networks/family_network_Moral_invisiable.pdf}
     \caption{Family Lineage Network for Moral Type Invisible}
-    \label{fig: family network Moral Type Invisible}
+    \label{fig: family network moral invisible}
 \end{figure}
 
 \begin{figure}[H]
@@ -641,7 +539,6 @@ Figures~\ref{fig: com network major} to \ref{fig: com network kin} depict the co
 
 From all these figures, we could conclude that:
 \begin{itemize}
-    \item Occurred communications are scarce when communication is high and resources are scarce
     \item Universal moral and kin-focused moral agents in general have the most communication
 \end{itemize}
 
@@ -670,7 +567,7 @@ From all these figures, we could conclude that:
     \centering
         \includegraphics[width=\linewidth]{appendix_figures/networks/communication_network_Moral_invisiable.pdf}
     \caption{Communication network for Moral Type Invisible}
-    \label{fig: com network Moral Type Invisible}
+    \label{fig: com network moral invisible}
 \end{figure}
 
 \begin{figure}[H]
@@ -875,7 +772,7 @@ Overall, the results indicate that agents act as prompted: across all four setti
     \begin{subfigure}[t]{0.32\textwidth}
         \centering
         \includegraphics[width=\linewidth]{appendix_figures/matrix/Scarce_resource_soft_confusion_matrix.pdf}
-        \caption{Case: scarce resource}
+        \caption{Case: Scarce Resource}
     \end{subfigure}
     \hfill
     \begin{subfigure}[t]{0.32\textwidth}
@@ -887,7 +784,7 @@ Overall, the results indicate that agents act as prompted: across all four setti
     \begin{subfigure}[t]{0.32\textwidth}
         \centering
         \includegraphics[width=\linewidth]{appendix_figures/matrix/High_social_cost_soft_confusion_matrix.pdf}
-        \caption{Case: high social cost}
+        \caption{Case: High Social Cost}
     \end{subfigure}
     \begin{subfigure}[t]{0.32\textwidth}
         \centering
@@ -908,7 +805,7 @@ Overall, the results indicate that agents act as prompted: across all four setti
   \centering
   \includegraphics[width=\textwidth]{appendix_figures/mini_game_1.png}
   \caption{Invitation Distribution Among Agents. The columns represent the attributes of sender agents, while the rows correspond to those of receiver agents. Each cell in the matrix indicates the number of times (out of 10) that a sender agent issued an invitation to a receiver agent. Universal agents exhibit a consistent pattern of inviting across all types, reflecting their inclusive and group-oriented nature. In contrast, the other 3 agent types all extend significantly fewer invitations to selfish and kin-focused counterparts, showing the attraction in team forming of reciprocal and universal agents.}
-  \label{fig:your-label}
+  \label{fig:mini_game_1}
 \end{figure*}
 
 
