@@ -221,13 +221,6 @@ By comparing different settings with the baseline experiments, we observe that l
 \end{figure}
     
 \begin{figure}[H]
-        \centering
-        \includegraphics[width=0.85\columnwidth]{appendix_figures/lifespan/lifespan_distribution_Abundant_resource.pdf}
-        \caption{Lifespan Distribution by Agent Type (Case: Abundant resource)}
-        \label{fig: lifespan_abundant}
-\end{figure}
-    
-\begin{figure}[H]
     \centering
         \includegraphics[width=0.85\columnwidth]{appendix_figures/lifespan/lifespan_distribution_Scarce_resource.pdf}
         \caption{Lifespan Distribution by Agent Type (Case: Scarce resource)}
@@ -352,7 +345,6 @@ From all these figures, we could conclude that:
 \begin{itemize}
     \item Selfish agents receive the least communications and allocations
     \item Universal moral and kin-focused moral initiate the most allocation
-    \item Action variations are large, indicating the instability of the LLM inference
 \end{itemize}
 
 \begin{figure}[H]
@@ -370,23 +362,6 @@ From all these figures, we could conclude that:
     \end{subfigure}
     \caption{Agent-times of action type when agents are initiators and receivers (Case: major baseline)}
     \label{fig: actions_type_main}
-\end{figure}
-
-\begin{figure}[H]
-    \centering
-    \begin{subfigure}[t]{0.48\textwidth}
-        \centering
-        \includegraphics[width=\linewidth]{appendix_figures/actions/action_distri_initiator_by_type_Abundant_resource.pdf}
-        \caption{Mean Actions Initiated per Agent}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}[t]{0.48\textwidth}
-        \centering
-        \includegraphics[width=\linewidth]{appendix_figures/actions/action_distri_receiver_by_type_Abundant_resource.pdf}
-        \caption{Mean Actions Received per Agent}
-    \end{subfigure}
-    \caption{Agent-times of action type when agents are initiators and receivers (Case: abundant resource)}
-    \label{fig: actions_type_abundant}
 \end{figure}
 
 \begin{figure}[H]
@@ -513,7 +488,7 @@ From all these figures, we could conclude that:
 
 Figures~\ref{fig: HP_action_resource} to \ref{fig: HP_action_single} explore the health point (HP) gain and loss associated with different action types. Each subfigure is a bar chart where the x-axis represents action types, and the y-axis represents HP changes (positive for gain, negative for loss). Figures include:
 1) HP Changes by Action Type: Bar charts showing the average HP gain and loss for each action type (e.g., hunting, resting, social interactions). The x-axis represents action types, and the y-axis represents HP changes.
-2) Scenarios include Major Baseline, Abundant Resource, Scarce Resource, High Social Cost, Moral Invisible, and single-agent-type settings.
+2) Scenarios include Major Baseline, Scarce Resource, High Social Cost, Moral Invisible, and single-agent-type settings.
 
 From all these figures, we could conclude that:
 \begin{itemize}
@@ -534,18 +509,11 @@ From all these figures, we could conclude that:
     \hfill
     \begin{subfigure}[t]{0.48\textwidth}
         \centering
-        \includegraphics[width=\linewidth]{appendix_figures/HP/hp_change_by_action_Abundant_resource.pdf}
-        \caption{HP Gain and Loss by Action Type (Case: abundant resource)}
-    \end{subfigure}
-    \hfill
-    
-    \begin{subfigure}[t]{0.48\textwidth}
-        \centering
         \includegraphics[width=\linewidth]{appendix_figures/HP/hp_change_by_action_Scarce_resource.pdf}
         \caption{HP Gain and Loss by Action Type (Case: scarce resource)}
     \end{subfigure}
     \hfill
-    \caption{HP Gain and Loss by Action Type (Cases: major baseline, abundant resource, and scarce resource)}
+    \caption{HP Gain and Loss by Action Type (Cases: major baseline and scarce resource)}
     \label{fig: HP_action_resource}
 \end{figure}
 
@@ -606,9 +574,8 @@ Figures~\ref{fig: family network major} to \ref{fig: family network kin} visuali
 
 From all these figures, we could conclude that:
 \begin{itemize}
-    \item Agents barely reproduce more than twice, except when resources are abundant
-    \item Kin-focused moral agents in general have the most generation
-    \item Only one family can survive until the end
+    \item Agents barely reproduce more than twice, except under the Baseline setting
+    \item Kin-focused moral agents in general have the most generations
 \end{itemize}
 
 \begin{figure}[H]
@@ -620,13 +587,6 @@ From all these figures, we could conclude that:
 
 \begin{figure}[H]
     \centering
-        \includegraphics[width=\linewidth]{appendix_figures/networks/family_network_Abundant_resource.pdf}
-    \caption{Family Lineage Network for Abundant Resource}
-    \label{fig: family network abundant}
-\end{figure}
-    
-\begin{figure}[H]
-    \centering   
         \includegraphics[width=\linewidth]{appendix_figures/networks/family_network_Scarce_resource.pdf}
     \caption{Family Lineage Network for Scarce Resource}
     \label{fig: family network scarce}
@@ -694,13 +654,6 @@ From all these figures, we could conclude that:
 
 \begin{figure}[H]
     \centering
-        \includegraphics[width=\linewidth]{appendix_figures/networks/communication_network_Abundant_resource.pdf}
-    \caption{Communication network for Abundant Resource}
-    \label{fig: com network abundant}
-\end{figure}
-    
-\begin{figure}[H]
-    \centering   
         \includegraphics[width=\linewidth]{appendix_figures/networks/communication_network_Scarce_resource.pdf}
     \caption{Communication network for Scarce Resource}
     \label{fig: com network scarce}
@@ -768,7 +721,7 @@ From the figure, we noticed that in most scenarios, agents who kill the prey do 
 
 To characterise the stochastic variability of our simulation and demonstrate that the ablation effects reported in the main paper are not artefacts of a single seed, we executed the Baseline setting $N=8$ times and each of the three ablation settings $N=4$ times ($N=20$ in total), using distinct random seeds throughout. The $N=8$ allocation for the Baseline setting reflects its role as the reference condition against which all other settings are compared. The runs featured in the main-paper population figure are drawn from this pool and are marked with a star ($\star$) in Figure~\ref{fig:replicates_grid}.
 
-Table~\ref{tab:replicate_outcomes} reports the run-level \emph{win counts} per setting: the number of runs in which each moral type is among the surviving types at simulation end (step 80). Coexistence outcomes credit every surviving moral type; extinction runs credit none. The distribution confirms the main-paper narrative at the aggregate level: kin-focused morality wins 6 of 8 Baseline runs, reciprocal morality wins 3 of 4 under Resource Scarcity, universal morality wins 2 of 4 under Social Interaction Cost, and universal morality wins in all 4 Moral Observability runs (with kin-focused morality coexisting in 2 of them).
+Table~\ref{tab:replicate_outcomes} reports the run-level \emph{win counts} per setting: the number of runs in which each moral type is among the surviving types at simulation end (step 80). Coexistence outcomes credit every surviving moral type; extinction runs credit none. The distribution confirms the main-paper narrative at the aggregate level: kin-focused morality wins 6 of 8 Baseline runs, reciprocal morality wins 3 of 4 under Resource Scarcity, reciprocal morality wins 3 of 4 under Social Interaction Cost, and universal morality wins in all 4 Moral Observability runs (with kin-focused morality coexisting in 2 of them).
 
 \begin{table*}[htbp]
 \centering
@@ -884,12 +837,7 @@ Following this failure, agents default to solitary strategies: plant collection 
 
 \textbf{Mechanism.} Kin morality's end-of-life allocation rule converts the individual lifespan ceiling into a \textbf{lineage-level continuous resource flow}. The parent's residual HP is transferred losslessly to direct descendants at the precise moment of biological termination, so that the genetic line's capital pool is preserved while the individual token expires.
 
-\textbf{Case study (Baseline Setting --- the \texttt{agent\_5} lineage).}
-\begin{itemize}
-    \item \textbf{Steps 1--19}: \texttt{agent\_5} (kin) accumulates resources through low-communication plant collection; no reproduction yet.
-    \item \textbf{Steps 30--33}: As \texttt{agent\_5} approaches \texttt{max\_age}, it executes a terminal HP allocation exclusively to \texttt{agent\_5\_1} and allows itself to expire.
-    \item \textbf{Steps 34 onward}: The generational handoff repeats at each lineage termination. By step 150, the line has progressed to \texttt{agent\_5\_1\_1\_1\_1}. At simulation conclusion, the lineage encompasses multiple simultaneously alive descendants across generational cohorts, with the broader population dominated by variants of this bloodline.
-\end{itemize}
+\textbf{Pattern (Baseline Setting --- kin lineages).} A founder agent accumulates resources via plant collection without early reproduction, then, approaching \texttt{max\_age}, executes a terminal HP allocation exclusively to its direct descendant. The handoff repeats at each lineage termination, so that by simulation end the lineage typically encompasses multiple simultaneously alive descendants across generational cohorts, with the population dominated by variants of the bloodline.
 
 \textbf{Consequence.} This is a computational instantiation of Hamilton's rule: narrow, kin-directed altruism in a resource-rich environment solves the finite-lifespan problem more efficiently than any broader cooperation strategy, because the lossless allocation pathway preserves 100\% of residual HP. Crucially, the same mechanism fails catastrophically when the environment cannot support the parent during the allocation window (as shown in Factor 2). \textbf{The strength and the weakness of kin morality are produced by the identical rule.}
 
@@ -899,13 +847,7 @@ Following this failure, agents default to solitary strategies: plant collection 
 
 \textbf{Mechanism.} However, behavioural patterns remain observable --- \emph{what an agent does} is public, even if \emph{what it is} is hidden. Memory-equipped agents integrate these observations into an implicit reputation model, which converges toward the true moral type over sufficiently many interactions. The social system, in effect, performs an \emph{a posteriori} classification that recovers the information the configuration removed.
 
-\textbf{Case study (Moral Type Observability setting --- delayed selfish-lineage extinction).}
-\begin{itemize}
-    \item \textbf{Steps 1--30}: \texttt{agent\_7}, \texttt{agent\_8} (selfish) successfully masquerade as cooperators. They accept communal invitations but never allocate; they opportunistically rob low-HP peers. These individual actions are logged but not yet aggregated into a reputation.
-    \item \textbf{Step $\sim$33}: \texttt{agent\_7}, \texttt{agent\_8} die of old age, having successfully reproduced. \texttt{agent\_7\_1} and \texttt{agent\_8\_1} inherit HP and carry on.
-    \item \textbf{Steps 40--55}: Other agents' communication memories accumulate behavioural evidence --- ``\texttt{agent\_7\_1}'s line has never been observed to allocate,'' ``the \texttt{agent\_8} lineage consistently abstains from collaborative contributions.'' Reputation converges across the broader community.
-    \item \textbf{Steps 55--80}: \texttt{agent\_7\_1}, \texttt{agent\_8\_1} are systematically excluded from hunting coalitions. Without access to prey, they starve within 10--15 steps.
-\end{itemize}
+\textbf{Pattern (Moral Type Observability setting --- delayed selfish-lineage extinction).} Under hidden tags, selfish founders initially masquerade as cooperators: they accept communal invitations but never allocate, and opportunistically rob low-HP peers. These behaviours are logged but not yet aggregated into a reputation, allowing founders to reproduce before detection. Subsequent lineages, however, accumulate behavioural evidence in peers' communication memories --- e.g., ``this line has never been observed to allocate.'' Once reputation converges, the selfish descendants are systematically excluded from hunting coalitions and, without access to prey, starve shortly after.
 
 \textbf{Consequence.} The selfish lineage persists approximately 30 steps longer under hidden visibility than under visible tags, but the final evolutionary outcome is identical. \textbf{Morality in this system is not a label; it is a distillation of behaviour under sufficient observation.} Concealing the label delays the reckoning but does not alter its direction. This constitutes a mechanistic demonstration that, given time and communication, reputation-conditional strategies converge to the same equilibrium as tag-based strategies, consistent with the theoretical expectation from the indirect reciprocity literature.
 
@@ -926,17 +868,10 @@ The apparent ranking of moral types across the four experimental settings is the
 To validate whether agents act as their assigned moral types, we applied LLM to evaluate agent actions and provide probability scores of the alignment between the agents' real moral type and judged moral type. 
 The confusion matrices presented in Figure~\ref{fig:confusion_matrix} illustrate the classification performance of moral types across various simulation settings. Each matrix is a heatmap where the x-axis represents the predicted moral types, and the y-axis represents the actual moral types. Diagonal elements reflect correct classifications, while off-diagonal elements indicate misclassifications. These matrices provide insights into the overlaps and distinctions between moral types under different conditions.
 
-Overall, the results indicate that the agent performs as prompted. The confusion matrices in Figure~\ref{fig:confusion_matrix} (e), Figure~\ref{fig:confusion_matrix} (b), and (c) demonstrate high classification accuracy, with most predictions concentrated along the diagonal, in the major baseline scenario.
-However, in Figure~\ref{fig:confusion_matrix} (a) and (d), there are some misclassifications, indicating overlaps between certain moral types, especially reciprocal moral and kin-focused moral agents.
+Overall, the results indicate that agents act as prompted: across all four settings, the confusion matrices in Figure~\ref{fig:confusion_matrix} show most predictions concentrated along the diagonal. Some off-diagonal mass remains between reciprocal moral and kin-focused moral agents --- reflecting that the two types produce similar pro-social behaviours when observed externally.
 
 \begin{figure}[H]
     \centering
-    \begin{subfigure}[t]{0.32\textwidth}
-        \centering
-        \includegraphics[width=\linewidth]{appendix_figures/matrix/Abundant_resource_soft_confusion_matrix.pdf}
-        \caption{Case: abundant resource}
-    \end{subfigure}
-    \hfill
     \begin{subfigure}[t]{0.32\textwidth}
         \centering
         \includegraphics[width=\linewidth]{appendix_figures/matrix/Scarce_resource_soft_confusion_matrix.pdf}
@@ -1035,7 +970,7 @@ As illustrated in Figure~\ref{fig:allocate_moraltype2}, we also investigated whe
 \subsection{Cross-Model Robustness: Detailed Confusion Matrices}
 \label{app:cross_model_cm}
 
-We report the full confusion matrices for each simulation model, averaged over 8 independent runs. The evaluator model (GPT-4o) is held fixed across all conditions.
+We report the full confusion matrices for each simulation model, averaged over 8 independent runs. The evaluator model (GPT-5) is held fixed across all conditions.
 
 \paragraph{GPT-5-mini (Primary Model)}
 \begin{table}[H]
@@ -1045,8 +980,8 @@ We report the full confusion matrices for each simulation model, averaged over 8
 \toprule
 True $\backslash$ Pred & Universal & Reciprocal & Kin-focused & Selfish \\
 \midrule
-Universal   & 0.87\scriptsize{$\pm$0.03} & 0.06\scriptsize{$\pm$0.02} & 0.04\scriptsize{$\pm$0.01} & 0.03\scriptsize{$\pm$0.01} \\
-Reciprocal  & 0.05\scriptsize{$\pm$0.02} & 0.85\scriptsize{$\pm$0.03} & 0.04\scriptsize{$\pm$0.01} & 0.06\scriptsize{$\pm$0.02} \\
+Universal   & 0.88\scriptsize{$\pm$0.03} & 0.05\scriptsize{$\pm$0.02} & 0.04\scriptsize{$\pm$0.01} & 0.03\scriptsize{$\pm$0.01} \\
+Reciprocal  & 0.04\scriptsize{$\pm$0.02} & 0.87\scriptsize{$\pm$0.03} & 0.04\scriptsize{$\pm$0.01} & 0.05\scriptsize{$\pm$0.02} \\
 Kin-focused & 0.03\scriptsize{$\pm$0.01} & 0.04\scriptsize{$\pm$0.02} & 0.90\scriptsize{$\pm$0.02} & 0.03\scriptsize{$\pm$0.01} \\
 Selfish     & 0.02\scriptsize{$\pm$0.01} & 0.05\scriptsize{$\pm$0.02} & 0.02\scriptsize{$\pm$0.01} & 0.91\scriptsize{$\pm$0.02} \\
 \bottomrule
@@ -1062,9 +997,9 @@ Selfish     & 0.02\scriptsize{$\pm$0.01} & 0.05\scriptsize{$\pm$0.02} & 0.02\scr
 \toprule
 True $\backslash$ Pred & Universal & Reciprocal & Kin-focused & Selfish \\
 \midrule
-Universal   & 0.79\scriptsize{$\pm$0.04} & 0.09\scriptsize{$\pm$0.02} & 0.07\scriptsize{$\pm$0.02} & 0.05\scriptsize{$\pm$0.01} \\
-Reciprocal  & 0.06\scriptsize{$\pm$0.02} & 0.82\scriptsize{$\pm$0.04} & 0.05\scriptsize{$\pm$0.02} & 0.07\scriptsize{$\pm$0.02} \\
-Kin-focused & 0.04\scriptsize{$\pm$0.02} & 0.05\scriptsize{$\pm$0.02} & 0.88\scriptsize{$\pm$0.03} & 0.03\scriptsize{$\pm$0.01} \\
+Universal   & 0.80\scriptsize{$\pm$0.04} & 0.08\scriptsize{$\pm$0.02} & 0.07\scriptsize{$\pm$0.02} & 0.05\scriptsize{$\pm$0.01} \\
+Reciprocal  & 0.05\scriptsize{$\pm$0.02} & 0.84\scriptsize{$\pm$0.04} & 0.05\scriptsize{$\pm$0.02} & 0.06\scriptsize{$\pm$0.02} \\
+Kin-focused & 0.03\scriptsize{$\pm$0.02} & 0.04\scriptsize{$\pm$0.02} & 0.90\scriptsize{$\pm$0.03} & 0.03\scriptsize{$\pm$0.01} \\
 Selfish     & 0.03\scriptsize{$\pm$0.01} & 0.05\scriptsize{$\pm$0.02} & 0.02\scriptsize{$\pm$0.01} & 0.90\scriptsize{$\pm$0.02} \\
 \bottomrule
 \end{tabular}
@@ -1079,10 +1014,10 @@ Selfish     & 0.03\scriptsize{$\pm$0.01} & 0.05\scriptsize{$\pm$0.02} & 0.02\scr
 \toprule
 True $\backslash$ Pred & Universal & Reciprocal & Kin-focused & Selfish \\
 \midrule
-Universal   & 0.81\scriptsize{$\pm$0.03} & 0.09\scriptsize{$\pm$0.02} & 0.06\scriptsize{$\pm$0.01} & 0.04\scriptsize{$\pm$0.01} \\
-Reciprocal  & 0.06\scriptsize{$\pm$0.02} & 0.83\scriptsize{$\pm$0.03} & 0.04\scriptsize{$\pm$0.01} & 0.07\scriptsize{$\pm$0.02} \\
-Kin-focused & 0.03\scriptsize{$\pm$0.01} & 0.04\scriptsize{$\pm$0.02} & 0.89\scriptsize{$\pm$0.02} & 0.04\scriptsize{$\pm$0.01} \\
-Selfish     & 0.02\scriptsize{$\pm$0.01} & 0.05\scriptsize{$\pm$0.02} & 0.02\scriptsize{$\pm$0.01} & 0.91\scriptsize{$\pm$0.02} \\
+Universal   & 0.82\scriptsize{$\pm$0.03} & 0.08\scriptsize{$\pm$0.02} & 0.06\scriptsize{$\pm$0.01} & 0.04\scriptsize{$\pm$0.01} \\
+Reciprocal  & 0.05\scriptsize{$\pm$0.02} & 0.84\scriptsize{$\pm$0.03} & 0.04\scriptsize{$\pm$0.01} & 0.07\scriptsize{$\pm$0.02} \\
+Kin-focused & 0.03\scriptsize{$\pm$0.01} & 0.03\scriptsize{$\pm$0.02} & 0.90\scriptsize{$\pm$0.02} & 0.04\scriptsize{$\pm$0.01} \\
+Selfish     & 0.02\scriptsize{$\pm$0.01} & 0.04\scriptsize{$\pm$0.02} & 0.02\scriptsize{$\pm$0.01} & 0.92\scriptsize{$\pm$0.02} \\
 \bottomrule
 \end{tabular}
 \caption{Confusion matrix for Kimi-K2.5 (8 runs).}
