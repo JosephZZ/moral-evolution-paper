@@ -1,14 +1,82 @@
 The emergence and evolution of morality represents one of the most enduring puzzles in evolutionary biology and social sciences~\citep{haidt2007moral, greene2013moral}. From an evolutionary standpoint, natural selection should favor individuals who maximize their reproductive success, often through selfish behaviors that increase resource acquisition at others' expense~\citep{dawkins1976selfish}. Yet, humans and some other species have evolved complex moral systems that frequently promote cooperation, altruism, and other prosocial behaviors that can seemingly contradict individual fitness maximization~\citep{tomasello2016natural}. This apparent contradiction presents a profound scientific question: Under what conditions does morality provide an evolutionary advantage?
 
-Prior research has approached this question through evolutionary game theory~\citep{nowak2006five, axelrod1981evolution}, anthropological fieldwork on moral universals and cultural variation~\citep{henrich2015secret, curry2019good}, and biological mechanisms including kin selection~\citep{hamilton1964genetical}, reciprocal altruism~\citep{trivers1971evolution}, and group selection~\citep{wilson2007rethinking}. Moral frameworks have further identified patterns such as the expanding circle of moral concern~\citep{singer1981expanding} and fundamental moral dimensions~\citep{haidt2007moral}. While these approaches have yielded valuable insights, they share a fundamental limitation: they must abstract away the cognitive processes underlying moral behaviour, encoding agent strategies as fixed rules or payoff matrices. This prevents investigation of how cognitive factors---such as the ability to identify others' moral dispositions, memory of past interactions, and communication bandwidth---interact with environmental pressures to shape moral evolution.
+Prior research has approached this question through evolutionary game theory~\citep{nowak2006five, axelrod1981evolution}, anthropological fieldwork on moral universals and cultural variation~\citep{henrich2015secret, curry2019good}, and biological mechanisms including kin selection~\citep{hamilton1964genetical}, reciprocal altruism~\citep{trivers1971evolution}, and group selection~\citep{wilson2007rethinking}. Moral frameworks have further identified patterns such as the expanding circle of moral concern~\citep{singer1981expanding} and fundamental moral dimensions~\citep{haidt2007moral}. While these approaches have yielded valuable insights, they share two simplifications (Fig.~\ref{fig:paradigm}, left): \emph{agents} are reduced to fixed strategies or payoff entries, and the \emph{world} is reduced to an abstract game. This prevents investigation of how cognitive factors---memory of past interactions, the ability to identify others' moral dispositions, communication bandwidth, reasoning under uncertainty---and richer environmental pressures jointly shape moral evolution.
 
 Recent advances in LLMs present a novel methodological opportunity to address these limitations. LLM-based agent simulations can model entities with sophisticated cognitive architectures---including values, memory, perception, reasoning, and social dynamics---that generate emergent, complex behaviors~\citep{park2023generative, horton2023large}. This simulation paradigm allows us to observe interactions between moral cognition, behavior, and evolutionary outcomes under controlled conditions while providing rich, realistic psychological details that surpass traditional agent-based models~\citep{aher2023using}.
 Nevertheless, the existing methods barely support research on morality evolution.
 
 To address the gaps, our research advances the study of human evolution through three primary contributions:
-1) Methodological: We pioneer a computational approach using LLM-based agents to bring psychological realism to evolutionary simulations, overcoming the limitations of traditional abstract models;
+1) Methodological: We propose a new research paradigm (Fig.~\ref{fig:paradigm}) that relaxes both simplifications of prior work---agents become cognitive and the world becomes a prehistoric hunter-gatherer ecology---turning cognition and environment into first-class experimental variables;
 2) Programmatic: We release \agentframe, an extensible agent framework, and \envframe, a versatile environment platform. Together, they enable multifaceted inquiry into social evolution—from norm formation to inter-group conflict—through both long-term and scenario-based simulation;
 3) Empirical: We conduct experiments across multiple settings showing that cooperation is consistently favoured by selection, with universal and reciprocal morality exhibiting the most stable survival. We discover emergent mechanisms---including a self-purging effect among selfish agents and the decisive role of the cost of moral judgment---that are difficult to study with traditional approaches. We validate robustness across multiple LLM backbones, architecture ablations, and prompt sensitivity analyses.
+
+\begin{figure}[t]
+\centering
+\begin{tikzpicture}[font=\scriptsize]
+% Column headers
+\node[font=\scriptsize\bfseries, color=gray!70, anchor=base] at (-1.75, 2.2) {TRADITIONAL};
+\node[font=\scriptsize\bfseries, color=accent, anchor=base]  at ( 1.75, 2.2) {OUR PARADIGM};
+
+% Row labels (rotated)
+\node[font=\tiny\bfseries, color=gray!65, rotate=90] at (-3.3, 1.55) {AGENTS};
+\node[font=\tiny\bfseries, color=gray!65, rotate=90] at (-3.3, -0.3) {ENVIRON.};
+
+% Dividers
+\draw[gray!40, dashed, line width=0.3pt] (0, 2.0) -- (0, -1.25);
+\draw[gray!40, dashed, line width=0.3pt] (-3.05, 0.6) -- (3.05, 0.6);
+
+% ─── AGENTS row ───
+% Traditional: two circles
+\node[circle, draw=gray!60, fill=gray!10, minimum size=5mm, inner sep=0pt, font=\tiny] at (-2.2, 1.55) {A};
+\node[circle, draw=gray!60, fill=gray!10, minimum size=5mm, inner sep=0pt, font=\tiny] at (-1.3, 1.55) {B};
+\node[font=\tiny\itshape, color=gray!70] at (-1.75, 0.9) {fixed strategies};
+
+% Ours: MoRE cognitive circle
+\node[circle, draw=accent, line width=0.7pt, minimum size=1.05cm, inner sep=0pt] at (1.75, 1.55) {};
+\node[circle, draw=accent, dashed, line width=0.3pt, minimum size=0.45cm, inner sep=0pt] at (1.75, 1.55) {};
+\node[font=\tiny\bfseries, color=accent, align=center, inner sep=0pt] at (1.75, 1.55) {Moral\\Value};
+\node[font=\tiny, anchor=south] at (1.75, 2.0) {Perceive};
+\node[font=\tiny, anchor=north] at (1.75, 1.1) {Reflect};
+\node[font=\tiny, anchor=east] at (1.22, 1.55) {Plan};
+\node[font=\tiny, anchor=west] at (2.28, 1.55) {Reason};
+\node[font=\tiny\itshape, color=accent] at (1.75, 0.9) {cognitive};
+
+% ─── ENV row ───
+% Traditional: 2x2 payoff matrix
+\draw[gray!60, line width=0.3pt] (-2.15, 0.1) rectangle (-1.35, -0.65);
+\draw[gray!60, line width=0.3pt] (-1.75, 0.1) -- (-1.75, -0.65);
+\draw[gray!60, line width=0.3pt] (-2.15, -0.275) -- (-1.35, -0.275);
+\node[font=\tiny] at (-1.95, -0.08) {C,C};
+\node[font=\tiny] at (-1.55, -0.08) {C,D};
+\node[font=\tiny] at (-1.95, -0.47) {D,C};
+\node[font=\tiny] at (-1.55, -0.47) {D,D};
+\node[font=\tiny\itshape, color=gray!70] at (-1.75, -1.0) {$2{\times}2$ payoff};
+
+% Ours: hunter-gatherer ecology strip
+\draw[color=pwine!55, line width=0.4pt] (0.55, -0.55) -- (2.95, -0.55);
+% plant: small triangle (tree/plant)
+\draw[color=pteal, line width=0.4pt, fill=pteal!30] (0.75, -0.55) -- (0.65, -0.25) -- (0.85, -0.25) -- cycle;
+% prey: amber ellipse above ground
+\draw[color=pamber, line width=0.4pt, fill=pamber!25] (1.13, -0.38) ellipse (0.11cm and 0.06cm);
+% peers: three colored dots
+\filldraw[color=pteal]  (1.45, -0.4) circle (0.06cm);
+\filldraw[color=pamber] (1.63, -0.4) circle (0.06cm);
+\filldraw[color=pwine]  (1.81, -0.4) circle (0.06cm);
+% share: two small rings + tiny arrow
+\draw[color=accent, line width=0.35pt] (2.1, -0.4) circle (0.05cm);
+\draw[color=accent, line width=0.35pt] (2.3, -0.4) circle (0.05cm);
+\draw[->, color=accent, line width=0.3pt] (2.15, -0.4) -- (2.25, -0.4);
+% reproduce: parent + offspring (stacked dots)
+\filldraw[color=accent] (2.58, -0.32) circle (0.055cm);
+\filldraw[color=accent] (2.58, -0.46) circle (0.035cm);
+% action labels
+\node[font=\fontsize{4.5}{5}\selectfont, color=gray!70, anchor=north, align=center] at (1.75, -0.62) {plants\;\,prey\;\,peers\;\,share\;\,repro};
+\node[font=\tiny\itshape, color=accent] at (1.75, -1.0) {hunter-gatherer};
+
+\end{tikzpicture}
+\caption{A new research paradigm. Prior approaches reduce agents to fixed strategies and the world to a $2{\times}2$ payoff matrix (\emph{left}). We relax both simplifications (\emph{right}): agents become cognitive (Section~\ref{sec:agent_architecture}) and the world becomes a prehistoric hunter-gatherer ecology (Section~\ref{sec:framework})---making cognition \emph{and} environment first-class experimental variables.}
+\label{fig:paradigm}
+\end{figure}
 
 \begin{table*}[t]
 \setlength{\tabcolsep}{4pt}
