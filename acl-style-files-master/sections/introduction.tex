@@ -8,7 +8,7 @@ Nevertheless, the existing methods barely support research on morality evolution
 To address the gaps, our research advances the study of human evolution through three primary contributions:
 1) Methodological: We propose a new research paradigm (Fig.~\ref{fig:paradigm}) that relaxes both simplifications of prior work---agents become cognitive and the world becomes a prehistoric hunter-gatherer ecology---turning cognition and environment into first-class experimental variables;
 2) Programmatic: We release \agentframe, an extensible agent framework, and \envframe, a versatile environment platform. Together, they enable multifaceted inquiry into social evolution—from norm formation to inter-group conflict—through both long-term and scenario-based simulation;
-3) Empirical: We conduct experiments across multiple settings showing that cooperation is consistently favoured by selection, with universal and reciprocal morality exhibiting the most stable survival. We further identify cognition itself as a second central driver---most clearly through the cost of moral judgment, which shifts the winning moral type across settings, with a self-purging effect among selfish agents as an additional cognitive pattern---both difficult to study with traditional approaches. We validate robustness across multiple LLM backbones, architecture ablations, and prompt sensitivity analyses.
+3) Empirical: We conduct experiments across multiple settings showing that cooperation is consistently favoured by selection, with universal and reciprocal morality exhibiting the most stable survival. We further identify cognition itself as a central mediator---most clearly through the cost of moral judgment, which shifts the winning moral type across settings, with a self-purging effect among selfish agents as an additional cognitive pattern---both difficult to study with traditional approaches. We validate robustness across multiple LLM backbones, architecture ablations, and prompt sensitivity analyses.
 
 \begin{figure}[t]
 \centering
@@ -51,31 +51,36 @@ To address the gaps, our research advances the study of human evolution through 
 \node[font=\tiny] at (-1.55, -0.52) {D,D};
 \node[font=\tiny\itshape, color=gray!70] at (-1.75, -1.08) {$2{\times}2$ payoff};
 
-% Ours: hunter-gatherer ecology strip
-\draw[color=pwine!55, line width=0.4pt] (0.55, -0.6) -- (2.95, -0.6);
+% Ours: hunter-gatherer ecology strip (icons spread wider so "reproduction" label fits)
+\draw[color=pwine!55, line width=0.4pt] (0.35, -0.6) -- (3.0, -0.6);
 % plant: small triangle (tree/plant)
-\draw[color=pteal, line width=0.4pt, fill=pteal!30] (0.75, -0.6) -- (0.65, -0.3) -- (0.85, -0.3) -- cycle;
+\draw[color=pteal, line width=0.4pt, fill=pteal!30] (0.55, -0.6) -- (0.45, -0.3) -- (0.65, -0.3) -- cycle;
 % prey: amber ellipse above ground
-\draw[color=pamber, line width=0.4pt, fill=pamber!25] (1.13, -0.43) ellipse (0.11cm and 0.06cm);
+\draw[color=pamber, line width=0.4pt, fill=pamber!25] (0.95, -0.43) ellipse (0.11cm and 0.06cm);
 % peers: three colored dots
-\filldraw[color=pteal]  (1.45, -0.45) circle (0.06cm);
-\filldraw[color=pamber] (1.63, -0.45) circle (0.06cm);
-\filldraw[color=pwine]  (1.81, -0.45) circle (0.06cm);
+\filldraw[color=pteal]  (1.25, -0.45) circle (0.06cm);
+\filldraw[color=pamber] (1.40, -0.45) circle (0.06cm);
+\filldraw[color=pwine]  (1.55, -0.45) circle (0.06cm);
 % share: two small rings + tiny arrow
-\draw[color=accent, line width=0.35pt] (2.1, -0.45) circle (0.05cm);
-\draw[color=accent, line width=0.35pt] (2.3, -0.45) circle (0.05cm);
-\draw[->, color=accent, line width=0.3pt] (2.15, -0.45) -- (2.25, -0.45);
+\draw[color=accent, line width=0.35pt] (1.95, -0.45) circle (0.05cm);
+\draw[color=accent, line width=0.35pt] (2.15, -0.45) circle (0.05cm);
+\draw[->, color=accent, line width=0.3pt] (2.00, -0.45) -- (2.10, -0.45);
 % reproduce: parent + offspring (stacked dots)
-\filldraw[color=accent] (2.58, -0.37) circle (0.055cm);
-\filldraw[color=accent] (2.58, -0.51) circle (0.035cm);
-% action labels
-\node[font=\fontsize{4.5}{5}\selectfont, color=gray!70, anchor=north, align=center] at (1.75, -0.67) {plants\;\,prey\;\,peers\;\,share\;\,repro};
+\filldraw[color=accent] (2.70, -0.37) circle (0.055cm);
+\filldraw[color=accent] (2.70, -0.51) circle (0.035cm);
+% action labels (individual, so "reproduction" fits single-line)
+\node[font=\fontsize{4.5}{5}\selectfont, color=gray!70, anchor=north] at (0.55, -0.67) {plants};
+\node[font=\fontsize{4.5}{5}\selectfont, color=gray!70, anchor=north] at (0.95, -0.67) {prey};
+\node[font=\fontsize{4.5}{5}\selectfont, color=gray!70, anchor=north] at (1.40, -0.67) {peers};
+\node[font=\fontsize{4.5}{5}\selectfont, color=gray!70, anchor=north] at (2.05, -0.67) {share};
+\node[font=\fontsize{4.5}{5}\selectfont, color=gray!70, anchor=north] at (2.70, -0.67) {reproduction};
 \node[font=\tiny\itshape, color=accent] at (1.75, -1.08) {hunter-gatherer};
 
 \end{tikzpicture}
 \caption{A new research paradigm. Prior approaches reduce agents to fixed strategies and the world to a $2{\times}2$ payoff matrix (\emph{left}). We relax both simplifications (\emph{right}): agents become cognitive (Section~\ref{sec:agent_architecture}) and the world becomes a prehistoric hunter-gatherer ecology (Section~\ref{sec:framework})---making cognition \emph{and} environment first-class experimental variables.}
 \label{fig:paradigm}
 \end{figure}
+\vspace{-4mm}
 
 \begin{table*}[t]
 \setlength{\tabcolsep}{4pt}
